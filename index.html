@@ -79,7 +79,6 @@
         body.link-hover .cursor-dot { opacity: 0; }
         body.link-hover .cursor-circle { transform: translate(-50%, -50%) scale(1.5); background-color: rgba(255, 255, 255, 0.1); }
         body.is-dragging .cursor-circle { transform: translate(-50%, -50%) scale(1.8); border-color: white; background-color: rgba(255, 255, 255, 0.1); }
-        @media (max-width: 1024px) { .cursor-dot, .cursor-circle { display: none; } body { cursor: default; } }
         #mainHeader nav { transition: background 0.5s ease, border-color 0.5s ease; }
         #mainHeader a { transition: color 0.5s ease; }
         body.on-light-section .cursor-dot, body.light-theme .cursor-dot { background-color: var(--color-foreground-light); }
@@ -111,11 +110,13 @@
         .mobile-menu-link { font-size: 2rem; font-weight: 700; color: var(--color-muted); text-decoration: none; transition: color 0.3s ease; }
         .mobile-menu-link:hover, .mobile-menu-link:focus { color: var(--color-foreground); }
         .mobile-menu-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--color-foreground); }
-        #hero { z-index: 10; border-bottom: none; display: flex; align-items: center; justify-content: center; }
+        #hero { z-index: 10; border-bottom: none; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;}
+        #hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(16, 16, 16, 0.8), transparent); z-index: 1;}
+        #hero .hero-content { position: relative; z-index: 2; }
         #hero h1 { transition: color 0.5s ease; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         #hero p { transition: color 0.5s ease; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
         .background-image-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: url('https://i.postimg.cc/fbr2zfqt/erasebg-transformed.png'); background-size: contain; background-position: center bottom; background-repeat: no-repeat; }
-        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; letter-spacing: 1px; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: color 0.5s ease; }
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; letter-spacing: 1px; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: color 0.5s ease; z-index: 2; }
         .scroll-indicator .arrow { animation: bounce 1.5s infinite; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); } 50% { transform: translateY(-12px); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); } }
         .main-content-wrapper { position: relative; z-index: 5; background-color: var(--bg-color); border-top-left-radius: 40px; border-top-right-radius: 40px; margin-top: 0; transition: background-color 0.5s ease; }
@@ -309,68 +310,117 @@
 
         /*
         ================================================================================
-        | SECTION: MOBILE & RESPONSIVE IMPROVEMENTS (ALL FIXES ARE HERE)               |
+        | SUPERIOR MOBILE EXPERIENCE OVERHAUL                                          |
+        | Desktop styles are preserved above. Mobile styles are defined below.         |
         ================================================================================
         */
-        @media (max-width: 1024px) { 
-            .side-navigation, .fixed-actions { display: none; } 
-            /* FIX: Center align the 'About Me' text container and its content */
-            .about-wrapper { align-items: center; } 
-            .text-container { align-items: center; margin-left: auto; margin-right: auto; } 
-            .line { text-align: center; } 
-        }
-
-        @media (max-width: 900px) { 
-            .contact-container-revamped { grid-template-columns: 1fr; gap: 4rem; } 
-            .contact-left { text-align: center; } 
-            .contact-addresses { justify-content: center; text-align: left; } 
-            .contact-arrow-button { align-self: center; margin-top: 2rem; } 
-        }
-
         @media (max-width: 768px) { 
-            section { padding: 6rem 1.5rem; } 
-            #hero h1 { font-size: clamp(2.8rem, 12vw, 4rem); }
-            #hero p { font-size: clamp(1.2rem, 6vw, 2rem); } /* FIX: Reduced subtitle font size */
+            .cursor-dot, .cursor-circle { display: none; } 
+            body { cursor: default; }
+            .side-navigation, .fixed-actions { display: none; } 
 
-            .about-wrapper > .flex { align-items: center; width: 100%; flex-direction: column; }
-            .about-wrapper > .flex > .btn { width: 90%; justify-content: center; }
-            
+            /* === HERO SECTION REVAMP === */
+            /* Make the hero take up most of the screen and restructure image positioning */
+            #hero {
+                height: 90vh;
+                min-height: 600px;
+                align-items: flex-start; /* Align content to the top */
+                padding-top: 10rem;
+            }
+            /* Detach the background image from the body and attach it directly to the mobile hero */
+            .background-image-container {
+                position: absolute;
+                top: auto; /* Unset fixed positioning */
+                left: 0;
+                width: 100%;
+                height: 80%; /* Control the image height */
+                bottom: 0; /* Pin to the bottom */
+                z-index: 0; /* Behind hero content but inside hero section */
+                background-size: contain; /* Make it larger and responsive */
+                background-position: center bottom;
+            }
+            #hero h1 { 
+                font-size: clamp(2.8rem, 12vw, 4rem); 
+                line-height: 1.1;
+            }
+            #hero p { 
+                font-size: clamp(1.2rem, 6vw, 2rem); 
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* === ABOUT SECTION RESTRUCTURE === */
+            #about { padding: 6rem 1.5rem; }
+            .about-wrapper { 
+                align-items: center; /* Center the entire about container */
+            } 
+            .text-container { 
+                align-items: center; /* Center the text lines */
+                margin-left: auto; 
+                margin-right: auto; 
+            } 
+            .line { 
+                text-align: center; /* Center text within each line */
+                font-size: clamp(1.5rem, 6vw, 2.2rem); /* More readable font size */
+                line-height: 1.4;
+            }
+            .about-wrapper > .flex { 
+                align-items: center; 
+                width: 100%; 
+                flex-direction: column; 
+            }
+            .about-wrapper > .flex > .btn { 
+                width: 90%; 
+                max-width: 400px;
+                justify-content: center; 
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            /* === GENERAL & SECTION-SPECIFIC POLISH === */
+            section { padding: 6rem 1.5rem; } 
+            .section-title { font-size: clamp(2.2rem, 8vw, 3rem); }
+
             .services-layout-grid { grid-template-columns: 1fr; gap: 3rem; } 
             .services-nav-list { align-items: center; gap: 1.5rem; } 
             .service-nav-item { font-size: clamp(2rem, 8vw, 2.5rem); text-align: center; } 
-            
-            /* FIX: Make portfolio items much larger and centered on mobile */
-            .carousel-item { width: 85vw; margin: 0 2.5vw; } 
+            .service-nav-item:hover, .service-nav-item.active { transform: translateX(0) scale(1.05); }
+
+            #portfolio { padding: 6rem 0; }
+            .carousel-item { width: 85vw; max-width: 400px; margin: 0 2vw; } 
             .carousel-container { height: auto; min-height: 65vh; }
             
-            .form-row { flex-direction: column; gap: 0; } 
-            .input-group-revamped { margin-bottom: 2.5rem; } 
-            
-            /* FIX: Adjust giant footer text to prevent wrapping */
-            .giant-footer-text { 
-                font-size: clamp(4rem, 24vw, 8rem); /* Adjusted clamp for better fit */
-                white-space: nowrap; /* Force it to stay on one line */
-                word-break: normal; /* Remove the aggressive word-break */
-            } 
-            
-            footer { padding: 4rem 1.5rem 1.5rem; } 
-            
+            #process { padding-bottom: 2rem; }
             .process-container-new::before { left: 30px; } 
-            .process-step-new, .process-step-new:nth-child(even) { grid-template-columns: 60px 1fr; gap: 2rem; } 
+            .process-step-new, .process-step-new:nth-child(even) { grid-template-columns: 60px 1fr; gap: 1.5rem; } 
             .process-number-new, .process-step-new:nth-child(even) .process-number-new { grid-column: 1 / 2; text-align: center; font-size: 2.5rem; -webkit-text-stroke-width: 1px; } 
             .process-title-new { font-size: clamp(1.5rem, 5vw, 2rem); }
             .process-content-new, .process-step-new:nth-child(even) .process-content-new { grid-column: 2 / 3; text-align: left; }
-            
+
+            #contact { padding: 6rem 1.5rem; }
+            .contact-container-revamped { grid-template-columns: 1fr; gap: 4rem; } 
+            .contact-left { text-align: center; } 
+            .contact-addresses { justify-content: center; text-align: left; flex-direction: column; gap: 2rem; align-items: center;} 
             .contact-heading-revamped { font-size: clamp(3rem, 15vw, 6rem); }
+            .form-row { flex-direction: column; gap: 0; } 
+            .input-group-revamped { margin-bottom: 2.5rem; } 
             .budget-options { gap: 0.5rem; justify-content: center; }
             .budget-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+            .contact-arrow-button { align-self: center; margin-top: 2rem; } 
+
+            /* === RESPONSIVE FOOTER TEXT === */
+            .giant-footer-text { 
+                font-size: clamp(3rem, 20vw, 6rem); /* Fluidly scale the font size */
+                white-space: nowrap; /* CRITICAL: Prevents the word from breaking */
+                word-break: keep-all; 
+            } 
+            footer { padding: 4rem 1.5rem 1.5rem; } 
         }
 
         @media (max-width: 480px) {
-            section { padding: 5rem 1rem; }
-            .section-title { font-size: clamp(2rem, 8vw, 2.5rem); }
-            #hero { min-height: 90vh; }
-            .about-wrapper .btn { padding: 1rem; font-size: 1rem; }
+            section, #about, #contact, #process { padding: 5rem 1rem; }
+            #hero { padding-top: 8rem; min-height: 500px; }
             .footer-bottom-text-color { flex-direction: column; text-align: center; gap: 1rem; }
             #mainHeader nav { padding-left: 1rem; padding-right: 1rem; }
             .mobile-menu-close { top: 1rem; right: 1rem; }
@@ -528,9 +578,9 @@
     </aside>
 
     <main>
-        <div class="background-image-container"></div>
         <section id="hero">
-            <div class="hero-content relative z-10 px-4">
+            <div class="background-image-container"></div>
+            <div class="hero-content">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white" data-lang-key="hero_title">Webdesign a Vývoj v Praze</h1>
                 <p class="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium uppercase tracking-tight text-gray-300" data-lang-key="hero_subtitle">Tvořím digitální zážitky, které rostou.</p>
             </div>
@@ -1241,13 +1291,25 @@
             sections.forEach(section => observer.observe(section));
 
             // --- GSAP SCROLL ANIMATIONS ---
-            if (document.querySelector('#hero')) {
-                ScrollTrigger.create({ trigger: "#hero", start: "top top", end: "bottom top", pin: true, pinSpacing: false });
-                gsap.to("#hero .hero-content", { opacity: 0, ease: "power1.in", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom center", scrub: true } });
+            if (window.matchMedia("(min-width: 769px)").matches) {
+                if (document.querySelector('#hero')) {
+                    ScrollTrigger.create({ trigger: "#hero", start: "top top", end: "bottom top", pin: true, pinSpacing: false });
+                    gsap.to("#hero .hero-content", { opacity: 0, ease: "power1.in", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom center", scrub: true } });
+                }
+                gsap.set('.main-content-wrapper', { zIndex: 5 });
+                ScrollTrigger.create({ 
+                    trigger: '.main-content-wrapper', 
+                    start: 'top 99.9%', // A pixel before it starts scrolling over
+                    onEnter: () => gsap.set('.main-content-wrapper', { zIndex: 20 }), 
+                    onLeaveBack: () => gsap.set('.main-content-wrapper', { zIndex: 5 }) 
+                });
+            } else {
+                gsap.set('.main-content-wrapper', { zIndex: 20 }); // Keep content on top on mobile
             }
+
             gsap.utils.toArray('#about .line').forEach(line => { gsap.to(line.querySelector('.revealed-text'), { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", ease: "power1.inOut", scrollTrigger: { trigger: line, start: "top 85%", end: "bottom 70%", scrub: 0.8 } }); });
-            if (document.querySelector('#services')) ScrollTrigger.create({ trigger: "#services", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });
-            if (document.querySelector('#stats')) ScrollTrigger.create({ trigger: "#stats", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });
+            if (document.querySelector('#services') && window.matchMedia("(min-width: 769px)").matches) ScrollTrigger.create({ trigger: "#services", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });
+            if (document.querySelector('#stats') && window.matchMedia("(min-width: 769px)").matches) ScrollTrigger.create({ trigger: "#stats", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });
             gsap.set("#portfolio", { borderTopLeftRadius: '40px', borderTopRightRadius: '40px' });
 
             // --- DYNAMIC SERVICES SECTION ---
@@ -1257,7 +1319,7 @@
             
             // --- STATS & PROCESS ANIMATIONS ---
             gsap.utils.toArray('.stat-number').forEach(stat => { const endValue = parseFloat(stat.textContent); gsap.from(stat, { textContent: 0, duration: 2, ease: "power2.out", snap: { textContent: endValue % 1 !== 0 ? 0.1 : 1 }, scrollTrigger: { trigger: stat, start: "top 90%", toggleActions: 'play none none none' } }); });
-            gsap.utils.toArray('.process-step-new').forEach(step => { const number = step.querySelector('.process-number-new'); const content = step.querySelector('.process-content-new'); gsap.from(number, { scrollTrigger: { trigger: step, start: 'top 80%', toggleActions: 'play none none none' }, x: (step.matches(':nth-child(even)')) ? 50 : -50, opacity: 0, duration: 1, ease: 'power3.out' }); gsap.from(content.children, { scrollTrigger: { trigger: step, start: 'top 80%', toggleActions: 'play none none none' }, x: (step.matches(':nth-child(even)')) ? -50 : 50, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.2 }); if (number) { number.addEventListener('mousemove', e => { const rect = number.getBoundingClientRect(); const x = ((e.clientX - rect.left) / rect.width) * 100; const y = ((e.clientY - rect.top) / rect.height) * 100; number.style.setProperty('--x', `${x}%`); number.style.setProperty('--y', `${y}%`); }); } });
+            gsap.utils.toArray('.process-step-new').forEach(step => { const number = step.querySelector('.process-number-new'); const content = step.querySelector('.process-content-new'); gsap.from(number, { scrollTrigger: { trigger: step, start: 'top 80%', toggleActions: 'play none none none' }, x: (step.matches(':nth-child(even)') && window.innerWidth > 768) ? 50 : (window.innerWidth > 768 ? -50 : 0), opacity: 0, duration: 1, ease: 'power3.out' }); gsap.from(content.children, { scrollTrigger: { trigger: step, start: 'top 80%', toggleActions: 'play none none none' }, x: (step.matches(':nth-child(even)') && window.innerWidth > 768) ? -50 : (window.innerWidth > 768 ? 50 : 0), opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.2 }); if (number) { number.addEventListener('mousemove', e => { const rect = number.getBoundingClientRect(); const x = ((e.clientX - rect.left) / rect.width) * 100; const y = ((e.clientY - rect.top) / rect.height) * 100; number.style.setProperty('--x', `${x}%`); number.style.setProperty('--y', `${y}%`); }); } });
 
             // --- FAQ ACCORDION ---
             const faqItems = document.querySelectorAll('.faq-item');
@@ -1276,7 +1338,6 @@
                 init() { this.cloneItems(); this.setupEventListeners(); this.updatePosition(false); this.setActiveState(); }
                 cloneItems() { this.wrapper.appendChild(this.items[0].cloneNode(true)); this.wrapper.insertBefore(this.items[this.realItemsCount - 1].cloneNode(true), this.items[0]); this.items = Array.from(this.wrapper.children); }
                 setupEventListeners() { this.wrapper.addEventListener('mousedown', this.handleStart.bind(this)); this.wrapper.addEventListener('touchstart', this.handleStart.bind(this), { passive: true }); document.addEventListener('mousemove', this.handleMove.bind(this)); document.addEventListener('touchmove', this.handleMove.bind(this), { passive: true }); document.addEventListener('mouseup', this.handleEnd.bind(this)); document.addEventListener('touchend', this.handleEnd.bind(this)); document.addEventListener('mouseleave', this.handleEnd.bind(this)); this.wrapper.addEventListener('transitionend', this.handleTransitionEnd.bind(this)); 
-                    // FIX: The resize listener now also resets the active state to prevent desync issues.
                     window.addEventListener('resize', debounce(() => {
                         this.updatePosition(false);
                         this.setActiveState(); 
@@ -1293,9 +1354,6 @@
                 setActiveState() { this.items.forEach(item => item.classList.remove('active')); const activeItem = this.items[this.currentIndex]; if(activeItem) activeItem.classList.add('active'); }
             }
             if (carouselWrapper && carouselWrapper.children.length > 0) new InfiniteCarousel('carouselWrapper');
-            
-            // --- MAIN CONTENT Z-INDEX SHIFT ---
-            ScrollTrigger.create({ trigger: 'body', start: 'top top-1', onEnter: () => gsap.set('.main-content-wrapper', { zIndex: 20 }), onLeaveBack: () => gsap.set('.main-content-wrapper', { zIndex: 5 }) });
 
             // --- UTILITIES ---
             if (document.getElementById('currentYear')) document.getElementById('currentYear').textContent = new Date().getFullYear();

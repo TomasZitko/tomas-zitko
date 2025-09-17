@@ -175,7 +175,7 @@
     .item-content{text-align:left;padding:1.75rem 2rem}
     .item-content h3{font-size:1.25rem;font-weight:600;color:var(--color-foreground);line-height:1.4;margin-bottom:.5rem; transition: color 0.5s ease;}
     .item-content p{font-size:.875rem;color:var(--color-muted);text-transform:none;letter-spacing:0; transition: color 0.5s ease;}
-    .carousel-nav{width:100%;max-width:300px;margin: 2rem auto 0; padding:0 1rem;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;z-index:10}
+    .carousel-nav{width:100%;max-width:200px;margin: 2rem auto 0; padding:0 1rem;box-sizing:border-box;display:flex;justify-content:center;gap:2rem;align-items:center;z-index:10}
     .carousel-arrow{background:rgba(30,30,30,.7);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,.1);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;transition:all .3s ease}
     .carousel-arrow:hover{background:rgba(255,255,255,.2);transform:scale(1.1)}
     #process { z-index: 25; }
@@ -322,8 +322,8 @@
     body.on-light-section #lang-switcher-container { border-color: rgba(0,0,0,0.15); }
     body.on-light-section #mainHeader .lang-btn { color: var(--color-muted-light); }
     body.on-light-section #mainHeader .lang-btn.active { background-color: var(--color-foreground-light); color: var(--bg-color-light); }
-    .cookie-consent-banner { position: fixed; bottom: -200px; left: 1.5rem; right: 1.5rem; max-width: 600px; margin: 0 auto; z-index: 10001; padding: 1.5rem; border-radius: 1rem; transition: bottom 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-    .cookie-consent-banner.show { bottom: 1.5rem; }
+    .cookie-consent-banner { position: fixed; bottom: -100%; left: 1rem; right: 1rem; width: calc(100% - 2rem); max-width: 600px; margin: 0 auto; z-index: 10001; padding: 1.25rem; border-radius: 1rem; transition: bottom 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+    .cookie-consent-banner.show { bottom: 1rem; }
     .cookie-consent-banner p { color: var(--color-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
     .cookie-consent-banner div { justify-content: space-between; }
     body.light-theme .cookie-consent-banner p { color: var(--color-muted-light); }
@@ -370,12 +370,8 @@
         }
 
         /* Carousel & Contact Fixes */
-        .carousel-container { height: auto; }
-        .carousel-wrapper { flex-wrap: wrap; justify-content: center; height: auto; }
-        .carousel-item { width: 45%; max-width: none; margin: 1%; opacity: 1; transform: none; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
-        .carousel-item.active, .carousel-item.active:hover, .carousel-item.active~.carousel-item { transform: none; }
+        .carousel-item { width: 80vw; }
         .portfolio-content-wrapper { padding-bottom: 4rem; }
-        .carousel-nav { display: none; } /* Hide arrows on mobile */
         
         .form-row { flex-direction: column; gap: 0; } 
         .input-group-revamped { margin-bottom: 2.5rem; } 
@@ -1044,7 +1040,7 @@
   <div id="cookie-banner" class="cookie-consent-banner glass-effect">
     <p data-lang-key="cookie_text">Tato webová stránka používá soubory cookies k vylepšení vašeho zážitku a pro účely
       analýzy. Souhlasíte s jejich použitím?</p>
-    <div class="flex flex-col sm:flex-row gap-4">
+    <div class="flex flex-row gap-4">
       <button id="accept-cookies" class="btn btn-light flex-1" data-lang-key="cookie_accept">Souhlasím</button>
       <button id="decline-cookies" class="btn flex-1" data-lang-key="cookie_decline">Odmítnout</button>
     </div>
@@ -1486,27 +1482,6 @@
         }
 
         // --- CAROUSEL LOGIC ---
-        function setupCarousel() {
-            // Only initialize the complex JS carousel on desktop
-            if (window.innerWidth > 768) {
-                 if (carouselWrapper && carouselWrapper.children.length > 0 && !carouselWrapper.classList.contains('desktop-carousel-initialized')) {
-                    new InfiniteCarousel('carouselWrapper', 'carouselPrev', 'carouselNext');
-                    carouselWrapper.classList.add('desktop-carousel-initialized');
-                    const nav = document.querySelector('.carousel-nav');
-                    if (nav) nav.style.display = 'flex'; 
-                }
-            } else {
-                // On mobile, hide the arrows and let CSS handle the grid layout
-                const nav = document.querySelector('.carousel-nav');
-                if (nav) nav.style.display = 'none';
-                 if (carouselWrapper && carouselWrapper.classList.contains('desktop-carousel-initialized')) {
-                    // Cleanup if resizing from desktop to mobile
-                    carouselWrapper.classList.remove('desktop-carousel-initialized');
-                    // This is a simple cleanup; a real-world scenario might need to kill the ScrollTrigger instance.
-                 }
-            }
-        }
-        
         class InfiniteCarousel {
             constructor(wrapperId, prevBtnId, nextBtnId) { 
                 this.wrapper = document.getElementById(wrapperId); 
@@ -1556,9 +1531,9 @@
             setActiveState() { this.items.forEach(item => item.classList.remove('active')); const activeItem = this.items[this.currentIndex]; if(activeItem) activeItem.classList.add('active'); }
         }
         
-        setupCarousel();
-        window.addEventListener('resize', debounce(setupCarousel, 200));
-
+        if (carouselWrapper && carouselWrapper.children.length > 0) {
+            new InfiniteCarousel('carouselWrapper', 'carouselPrev', 'carouselNext');
+        }
         
         // --- MAIN CONTENT Z-INDEX SHIFT ---
         ScrollTrigger.create({ trigger: 'body', start: 'top top-1', onEnter: () => gsap.set('.main-content-wrapper', { zIndex: 20 }), onLeaveBack: () => gsap.set('.main-content-wrapper', { zIndex: 5 }) });
@@ -1693,5 +1668,6 @@
 </body>
 
 </html>
+
 
 

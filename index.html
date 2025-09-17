@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="cz" class="no-js">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X25P6WLGK4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-X25P6WLGK4');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://www.tomaszitko.cz/">
+
+    <title data-lang-key="html_title">Webdesign & Vývoj na Míru v Praze | Tomáš Zítko Portfolio</title>
+    <meta name="description" data-lang-key="meta_description" content="Profesionální freelance webdesignér a vývojář v Praze. Tvořím rychlé, moderní a responzivní weby s důrazem na UX, SEO a digitální růst vaší značky.">
+    <meta name="keywords" content="webdesign praha, tvorba webových stránek, freelance vývojář, seo optimalizace, web na míru, ux design, digitální marketing, Tomáš Zítko">
+    <meta name="author" content="Tomáš Zítko">
+
+    <meta property="og:title" data-lang-key="og_title" content="Webdesign & Vývoj na Míru v Praze | Tomáš Zítko Portfolio">
+    <meta property="og:description" data-lang-key="og_description" content="Tvořím rychlé, moderní a responzivní weby s důrazem na UX, SEO a digitální růst vaší značky.">
+    <meta property="og:image" content="https://www.tomaszitko.cz/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://www.tomaszitko.cz/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" data-lang-key="twitter_title" content="Webdesign & Vývoj na Míru v Praze | Tomáš Zítko Portfolio">
+    <meta name="twitter:description" data-lang-key="twitter_description" content="Tvořím rychlé, moderní a responzivní weby s důrazem na UX, SEO a digitální růst vaší značky.">
+    <meta name="twitter:image" content="https://www.tomaszitko.cz/assets/images/og-image.jpg">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#101010">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300..900;1,6..96,300..900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-foreground: #E0E0E0; --color-muted: #a0a0a0; --bg-color: #101010; 
+            --grid-color: rgba(255, 255, 255, 0.05); --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.1); --glass-blur: 20px;
+            --bg-color-light: #F5F5F7; --color-foreground-light: #1a1a1a; --color-muted-light: #555555; --border-color-light: #DDDDDD;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Manrope', sans-serif; background-color: var(--bg-color); background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(to right, var(--grid-color) 1px, transparent 1px); background-size: 30px 30px; color: var(--color-foreground); overflow-x: hidden; cursor: none; transition: background-color 0.5s ease, color 0.5s ease; }
+        .glass-effect { background: var(--glass-bg); -webkit-backdrop-filter: blur(var(--glass-blur)); backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); transition: background 0.5s ease, border-color 0.5s ease; }
+        .loader { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0A0A0A; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out; }
+        .loader-inner { display: flex; align-items: center; gap: 0.5rem; font-family: 'Manrope', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; font-size: 2.5rem; color: white; }
+        .loader-char { opacity: 0; }
+        body.is-loading { overflow: hidden; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 99px; color: var(--color-foreground); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: none; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .btn::before { content: ''; position: absolute; top: 0; left: -50%; width: 20px; height: 100%; background: rgba(255,255,255,0.2); transform: skewX(-20deg); transition: left 0.6s ease; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); border-color: rgba(255, 255, 255, 0.2); background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%); }
+        .btn:hover::before { left: 150%; }
+        .btn .btn-icon { transition: transform 0.3s ease; }
+        .btn:hover .btn-icon { transform: translateX(3px); }
+        .btn.btn-light { background: var(--color-foreground); color: var(--bg-color); border-color: var(--color-foreground); }
+        .btn.btn-light:hover { background: #ffffff; border-color: #ffffff; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
+        .btn.btn-light .btn-icon { color: var(--bg-color); }
+        .btn.btn-light:hover .btn-icon { color: var(--bg-color); }
+        .btn.btn-light::before { display: none; }
+        section { width: 100vw; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; text-align: center; padding: 8rem 2rem; border-bottom: 1px solid var(--border-color); transition: border-color 0.5s ease; }
+        section:last-of-type, #process, #faq, #contact { border-bottom: none; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-eyebrow { color: var(--color-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; transition: color 0.5s ease; }
+        .section-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; letter-spacing: -0.05em; color: white; transition: color 0.5s ease;}
+        .creative-underline { position: relative; text-decoration: none; color: inherit; }
+        .creative-underline::after { content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 1px; bottom: -4px; left: 0; background-color: white; transform-origin: bottom right; transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1), background-color 0.5s ease; }
+        .creative-underline:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+        .cursor-dot, .cursor-circle { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); border-radius: 50%; transition: transform 0.15s ease-out, opacity 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out, background-color 0.5s ease, border-color 0.5s ease; }
+        .cursor-dot { width: 8px; height: 8px; background-color: white; }
+        .cursor-circle { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition-duration: 0.25s; }
+        body.link-hover .cursor-dot { opacity: 0; }
+        body.link-hover .cursor-circle { transform: translate(-50%, -50%) scale(1.5); background-color: rgba(255, 255, 255, 0.1); }
+        body.is-dragging .cursor-circle { transform: translate(-50%, -50%) scale(1.8); border-color: white; background-color: rgba(255, 255, 255, 0.1); }
+        @media (max-width: 1024px) { .cursor-dot, .cursor-circle { display: none; } body { cursor: default; } }
+        #mainHeader nav { transition: background 0.5s ease, border-color 0.5s ease; }
+        #mainHeader a { transition: color 0.5s ease; }
+        body.on-light-section .cursor-dot, body.light-theme .cursor-dot { background-color: var(--color-foreground-light); }
+        body.on-light-section .cursor-circle, body.light-theme .cursor-circle { border-color: var(--color-foreground-light); }
+        body.on-light-section.link-hover .cursor-circle, body.light-theme.link-hover .cursor-circle { background-color: rgba(0, 0, 0, 0.05); }
+        body.on-light-section #mainHeader nav.glass-effect { background: rgba(255, 255, 255, 0.6); border-color: var(--border-color-light); }
+        body.on-light-section #mainHeader a, body.on-light-section #mainHeader button { color: var(--color-foreground-light); }
+        body.on-light-section #mainHeader .creative-underline::after { background-color: var(--color-foreground-light); }
+        body.on-light-section #mainHeader a:not(.btn):hover, body.on-light-section #mainHeader button:hover { color: #000; }
+        body.on-light-section #mainHeader .btn { background: var(--color-foreground-light); color: var(--bg-color-light); border-color: transparent; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        body.on-light-section #mainHeader .btn:hover { background: #333; color: white; box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+        body.on-light-section #mainHeader .btn::before { display: none; }
+        .side-navigation { position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); z-index: 50; }
+        .side-nav-list { display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; }
+        .side-nav-item { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--color-muted); }
+        .side-nav-label { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: white; opacity: 0; transform: translateX(10px); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease, background 0.5s ease, color 0.5s ease, border-color 0.5s ease; background: rgba(34, 34, 34, 0.7); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); }
+        .side-nav-dot { width: 8px; height: 8px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.3); transition: all 0.3s ease; flex-shrink: 0; }
+        .side-nav-item:hover .side-nav-label, .side-nav-item.active .side-nav-label { opacity: 1; transform: translateX(0); }
+        .side-nav-item:hover .side-nav-dot { background-color: rgba(255,255,255,0.7); }
+        .side-nav-item.active .side-nav-dot { background-color: white; transform: scale(1.5); }
+        body.on-light-section .side-nav-dot { background-color: rgba(0,0,0,0.2); }
+        body.on-light-section .side-nav-item.active .side-nav-dot { background-color: var(--color-foreground-light); }
+        body.on-light-section .side-nav-label { background: rgba(255, 255, 255, 0.7); color: var(--color-foreground-light); border-color: var(--border-color-light); }
+        #mobileMenuOpen svg { color: var(--color-foreground); transition: color 0.5s ease-in-out; }
+        body.on-light-section #mobileMenuOpen svg { color: var(--color-foreground-light); }
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1), background-color 0.5s ease; }
+        .mobile-menu.is-open { transform: translateX(0); }
+        .mobile-menu-nav { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; list-style: none; padding: 0; margin: 0; }
+        .mobile-menu-link { font-size: 2rem; font-weight: 700; color: var(--color-muted); text-decoration: none; transition: color 0.3s ease; }
+        .mobile-menu-link:hover, .mobile-menu-link:focus { color: var(--color-foreground); }
+        .mobile-menu-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--color-foreground); }
+        #hero { z-index: 10; border-bottom: none; display: flex; align-items: center; justify-content: center; }
+        #hero h1 { transition: color 0.5s ease; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        #hero p { transition: color 0.5s ease; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
+        .background-image-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: url('https://i.postimg.cc/fbr2zfqt/erasebg-transformed.png'); background-size: contain; background-position: center bottom; background-repeat: no-repeat; }
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; letter-spacing: 1px; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: color 0.5s ease; }
+        .scroll-indicator .arrow { animation: bounce 1.5s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); } 50% { transform: translateY(-12px); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); } }
+        .main-content-wrapper { position: relative; z-index: 5; background-color: var(--bg-color); border-top-left-radius: 40px; border-top-right-radius: 40px; margin-top: 0; transition: background-color 0.5s ease; }
+        #about { background-color: transparent; border-top-left-radius: 0; border-top-right-radius: 0; z-index: auto; margin-top: 0; padding-top: 8rem; }
+        .about-wrapper { width: 100%; max-width: 1100px; display: flex; flex-direction: column; align-items: flex-start; }
+        .text-container { display: flex; flex-direction: column; align-items: flex-start; margin: 0; margin-bottom: 3rem; }
+        .line { position: relative; font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.5; color: var(--color-muted); text-align: left; transition: color 0.5s ease; }
+        .revealed-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: var(--color-foreground); clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); transition: color 0.5s ease; }
+        #about .btn { padding: 1rem 2rem; font-size: 1rem; }
+        #brands { z-index: 21; background: var(--bg-color); padding: 3rem 0; min-height: auto; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); overflow: hidden; transition: background-color 0.5s ease, border-color 0.5s ease; }
+        .brands-scroller { width: 100%; -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent); mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent); }
+        .brands-scroller-inner { display: flex; gap: 5rem; width: max-content; animation: scroll 40s linear infinite; }
+        .brands-scroller:hover .brands-scroller-inner { animation-play-state: paused; }
+        .brand-logo { max-height: 40px; filter: grayscale(100%) brightness(1.5); opacity: 0.6; transition: all 0.3s ease; }
+        .brand-logo:hover { filter: grayscale(0%) brightness(1); opacity: 1; transform: scale(1.1); }
+        @keyframes scroll { to { transform: translateX(-50%); } }
+        #services { z-index: 22; }
+        .services-layout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; width: 100%; margin: 0 auto; text-align: left; align-items: center; }
+        .services-nav-list { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        .service-nav-item { font-family: 'Bodoni Moda', serif; font-weight: 900; font-style: italic; font-size: clamp(2.5rem, 5vw, 4rem); color: transparent; -webkit-text-stroke: 1px var(--color-muted); background: none; border: none; padding: 0.5rem 0; text-align: left; cursor: none; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .service-nav-item.active, .service-nav-item:hover { color: white; -webkit-text-stroke-color: white; transform: translateX(20px); }
+        .services-content-display { min-height: 400px; border-radius: 1.5rem; padding: 3rem; }
+        .service-content-title { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 700; color: white; margin-bottom: 1.5rem; transition: color 0.5s ease; }
+        .service-content-description { color: var(--color-muted); line-height: 1.7; margin-bottom: 2rem; transition: color 0.5s ease; }
+        .service-content-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+        .service-content-list li { position: relative; padding-left: 1.75rem; color: var(--color-foreground); transition: color 0.5s ease; }
+        .service-content-list li::before { content: '›'; color: white; position: absolute; left: 0; font-weight: bold; font-size: 1.5rem; top: -3px; transition: color 0.5s ease; }
+        #stats { z-index: 23; }
+        .section-light { background-color: var(--bg-color-light); color: var(--color-foreground-light); border-top-left-radius: 40px; border-top-right-radius: 40px; padding-top: 8rem; background-image: none; }
+        .section-light .section-eyebrow { color: var(--color-muted-light); }
+        .section-light .section-title { color: var(--color-foreground-light); }
+        .section-light .stat-number { color: var(--color-foreground-light); }
+        .section-light .stat-label { color: var(--color-muted-light); }
+        .section-light .stat-card { border: 1px solid var(--border-color-light); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; width: 100%; max-width: 1200px; }
+        .stat-card { border-radius: 1rem; padding: 2.5rem; text-align: center; }
+        .stat-number { font-size: 4rem; font-weight: 900; line-height: 1; }
+        .stat-label { color: var(--color-muted); margin-top: 0.75rem; transition: color 0.5s ease; }
+        #portfolio { z-index: 24; background-color: var(--bg-color); padding: 0; overflow: hidden; min-height: auto; transition: background-color 0.5s ease; }
+        .portfolio-content-wrapper { padding: 8rem 0; width: 100%; }
+        .carousel-container{position:relative;width:100vw;height:70vh;max-height:700px;margin-bottom:3rem;perspective:2000px}.carousel-wrapper{display:flex;height:100%;cursor:grab;will-change:transform;align-items:center;transform-style:preserve-3d}body.is-dragging .carousel-wrapper{cursor:grabbing}.carousel-item{flex-shrink:0;width:50vw;max-width:600px;height:auto;margin:0 2vw;border-radius:16px;overflow:hidden;background-color:#181818;border:1px solid var(--border-color);transition:transform .6s cubic-bezier(.25,1,.5,1),opacity .6s cubic-bezier(.25,1,.5,1),box-shadow .6s cubic-bezier(.25,1,.5,1), background-color 0.5s ease, border-color 0.5s ease;opacity:.5;transform:scale(.9) rotateY(30deg);box-shadow:0 10px 30px rgba(0,0,0,.3);position:relative}.carousel-item.active{opacity:1;transform:scale(1) rotateY(0deg) translateZ(0);box-shadow:0 20px 50px rgba(0,0,0,.5)}.carousel-item.active:hover{transform:scale(1.03) rotateY(0deg) translateZ(50px);box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 20px rgba(255,255,255,.1)}.carousel-item.active~.carousel-item{transform:scale(.9) rotateY(-30deg)}.item-image-wrapper{width:100%;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--border-color); transition: border-color 0.5s ease;}.item-image{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;transition:transform .6s cubic-bezier(.25,1,.5,1)}.carousel-item.active:hover .item-image{transform:scale(1.05)}.item-content{text-align:left;padding:1.75rem 2rem}.item-content h3{font-size:1.25rem;font-weight:600;color:var(--color-foreground);line-height:1.4;margin-bottom:.5rem; transition: color 0.5s ease;}.item-content p{font-size:.875rem;color:var(--color-muted);text-transform:none;letter-spacing:0; transition: color 0.5s ease;}
+        #process { z-index: 25; }
+        .process-container-new { width: 100%; max-width: 900px; margin-top: 4rem; position: relative; display: flex; flex-direction: column; gap: 6rem; }
+        .process-container-new::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--border-color) 10%, var(--border-color) 90%, transparent); transition: background 0.5s ease; }
+        .process-step-new { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; position: relative; }
+        .process-step-new:nth-child(even) { grid-template-columns: 1fr 1fr; }
+        .process-step-new:nth-child(even) .process-number-new { grid-column: 2 / 3; grid-row: 1 / 2; text-align: left; }
+        .process-step-new:nth-child(even) .process-content-new { grid-column: 1 / 2; grid-row: 1 / 2; text-align: right; }
+        .process-number-new { font-family: 'Bodoni Moda', serif; font-size: clamp(6rem, 15vw, 10rem); font-weight: 700; color: transparent; -webkit-text-stroke: 1px var(--border-color); line-height: 1; text-align: right; position: relative; transition: -webkit-text-stroke-color 0.5s ease; }
+        .process-number-fill { position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: white; -webkit-text-stroke: 1px white; clip-path: circle(0% at var(--x, 50%) var(--y, 50%)); transition: clip-path 0.8s ease-out, color 0.5s ease, -webkit-text-stroke-color 0.5s ease; }
+        .process-number-new:hover .process-number-fill { clip-path: circle(150% at var(--x, 50%) var(--y, 50%)); }
+        .process-content-new { text-align: left; }
+        .process-title-new { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: white; margin-bottom: 1rem; transition: color 0.5s ease; }
+        .process-description-new { color: var(--color-muted); line-height: 1.7; max-width: 400px; transition: color 0.5s ease; }
+        #faq { z-index: 26; }
+        .faq-container { width: 100%; max-width: 900px; margin-top: 4rem; }
+        .faq-item { border-bottom: 1px solid var(--border-color); transition: border-color 0.5s ease; }
+        .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; background: none; border: none; text-align: left; font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 600; color: var(--color-foreground); cursor: none; transition: color 0.3s ease; }
+        .faq-question:hover { color: white; }
+        .faq-icon { font-size: 2rem; font-weight: 300; line-height: 1; transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1); flex-shrink: 0; margin-left: 2rem; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.86, 0, 0.07, 1); }
+        .faq-answer p { color: var(--color-muted); line-height: 1.7; padding-bottom: 2rem; max-width: 800px; transition: color 0.5s ease; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        #contact { z-index: 27; align-items: stretch; background-color: var(--bg-color); transition: background-color 0.5s ease; }
+        .contact-container-revamped { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; max-width: 1400px; width: 100%; text-align: left; }
+        .contact-left { display: flex; flex-direction: column; justify-content: space-between; }
+        .contact-heading-revamped { font-family: 'Bodoni Moda', serif; font-size: clamp(4rem, 10vw, 8rem); font-weight: 400; line-height: 1.1; color: white; position: relative; transition: color 0.5s ease; }
+        .heading-graphic { position: absolute; top: -0.2em; left: 4.2em; width: 0.8em; height: 0.8em; }
+        .heading-graphic svg { width: 100%; height: 100%; overflow: visible; }
+        .heading-graphic svg path, .heading-graphic svg circle { stroke-width: 4; transition: fill 0.5s ease, stroke 0.5s ease; }
+        .heading-graphic svg circle { fill: white; }
+        .heading-graphic svg path { stroke: white; }
+        .contact-addresses { display: flex; gap: 4rem; margin-top: 4rem; }
+        .address-col h4 { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; color: white; margin-bottom: 1rem; transition: color 0.5s ease; }
+        .address-col p { font-size: 0.9rem; line-height: 1.6; color: var(--color-muted); transition: color 0.5s ease; }
+        .contact-right { display: flex; flex-direction: column; justify-content: center; }
+        .contact-form-revamped { width: 100%; display: flex; flex-direction: column; height: auto; }
+        .form-row { display: flex; gap: 2rem; width: 100%; }
+        .form-row .input-group-revamped { flex: 1; }
+        .input-group-revamped { position: relative; margin-bottom: 3.5rem; width: 100%; }
+        .input-group-revamped::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background-color: white; transform: scaleX(0); transform-origin: center; transition: transform 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.335), background-color 0.5s ease; }
+        .input-group-revamped:focus-within::after { transform: scaleX(1); }
+        .contact-form-revamped label { position: absolute; top: 0.5rem; left: 0; color: var(--color-muted); font-size: 1rem; font-weight: 400; transition: all 0.3s ease; pointer-events: none; }
+        .contact-form-revamped input, .contact-form-revamped textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color); padding: 0.5rem 0; color: var(--color-foreground); font-size: 1rem; font-family: 'Manrope', sans-serif; transition: border-color 0.3s ease, color 0.5s ease; }
+        .contact-form-revamped input:focus, .contact-form-revamped textarea:focus { outline: none; border-color: transparent; }
+        .contact-form-revamped input:focus + label, .contact-form-revamped input:not(:placeholder-shown) + label,
+        .contact-form-revamped textarea:focus + label, .contact-form-revamped textarea:not(:placeholder-shown) + label { top: -1.2rem; font-size: 0.8rem; color: white; transition: color 0.5s ease, top 0.3s ease, font-size 0.3s ease; }
+        .contact-form-revamped textarea { resize: none; min-height: 60px; }
+        .budget-selector { margin-bottom: 2.5rem; }
+        .budget-selector .budget-label { display: block; color: var(--color-muted); font-size: 1rem; font-weight: 400; margin-bottom: 1.5rem; }
+        .budget-options { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .budget-btn { display: inline-block; padding: 0.6rem 1.2rem; border-radius: 99px; border: 1px solid var(--border-color); color: var(--color-muted); background-color: transparent; font-size: 0.9rem; transition: all 0.3s ease; cursor: none; }
+        .budget-btn.active { background-color: var(--color-foreground); color: var(--bg-color); border-color: var(--color-foreground); }
+        .contact-arrow-button { width: 100%; align-self: center; margin-top: 1rem; padding-top: 1.25rem; padding-bottom: 1.25rem; font-size: 1.1rem; }
+        footer { padding: 3rem 2rem 2rem; background-color: var(--bg-color); color: var(--color-muted); position: relative; transition: background-color 0.5s ease, color 0.5s ease; }
+        .footer-text-color { color: var(--color-muted); }
+        .footer-link-color { color: var(--color-muted); transition: color 0.3s ease; }
+        .footer-link-color:hover { color: var(--color-foreground); }
+        .footer-bottom-text-color { color: #737373; }
+        .giant-footer-text { font-family: 'Bodoni Moda', serif; font-size: clamp(3rem, 16vw, 11rem); font-weight: 300; text-transform: uppercase; color: var(--color-foreground); line-height: 1; letter-spacing: 0.02em; white-space: nowrap; transition: color 0.5s ease; }
+        .fixed-actions { position: fixed; bottom: 2rem; left: 2rem; z-index: 1000; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+        .action-btn { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--glass-bg); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--border-color); color: var(--color-muted); cursor: none; transition: all 0.3s ease; }
+        .action-btn:hover { color: var(--color-foreground); border-color: var(--color-foreground); transform: scale(1.1) rotate(-10deg); }
+        .action-btn svg { width: 20px; height: 20px; }
+        .fixed-actions-divider { width: 1px; height: 2rem; background-color: var(--border-color); transition: background-color 0.5s ease; }
+        body.light-theme { background-color: var(--bg-color-light); background-image: linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px); color: var(--color-foreground-light); }
+        body.light-theme #mainHeader nav.glass-effect { background: rgba(255, 255, 255, 0.6); border-color: var(--border-color-light); }
+        body.light-theme #mainHeader a, body.light-theme #mainHeader button { color: var(--color-foreground-light); }
+        body.light-theme #mainHeader a:first-child { color: black;}
+        body.light-theme #mainHeader .creative-underline::after { background-color: var(--color-foreground-light); }
+        body.light-theme #mainHeader a:not(.btn):hover, body.light-theme #mainHeader button:hover { color: #000; }
+        body.light-theme #mainHeader .btn { background: var(--color-foreground-light); color: var(--bg-color-light); border-color: transparent; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        body.light-theme #mainHeader .btn:hover { background: #333; color: white; box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+        body.light-theme #mainHeader .btn::before { display: none; }
+        body.light-theme #mobileMenuOpen svg { color: var(--color-foreground-light); }
+        body.light-theme .side-nav-dot { background-color: rgba(0,0,0,0.2); }
+        body.light-theme .side-nav-item.active .side-nav-dot { background-color: var(--color-foreground-light); }
+        body.light-theme .side-nav-label { background: rgba(255, 255, 255, 0.7); color: var(--color-foreground-light); border-color: var(--border-color-light); }
+        body.light-theme .glass-effect { background: rgba(255, 255, 255, 0.6); border-color: var(--border-color-light); }
+        body.light-theme .btn { background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%); border-color: rgba(0, 0, 0, 0.1); box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--color-foreground-light); }
+        body.light-theme .btn:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-color: rgba(0, 0, 0, 0.2); background: white; }
+        body.light-theme .btn::before { display: none; }
+        body.light-theme .btn.btn-light { background: var(--color-foreground-light); color: var(--bg-color-light); }
+        body.light-theme .btn.btn-light:hover { background: #333; color: white; }
+        body.light-theme .btn.btn-light .btn-icon { color: var(--bg-color-light); }
+        body.light-theme .btn.btn-light:hover .btn-icon { color: white; }
+        body.light-theme .section-title { color: var(--color-foreground-light); }
+        body.light-theme .section-eyebrow { color: var(--color-muted-light); }
+        body.light-theme #hero h1, body.light-theme #hero p { color: var(--color-foreground-light); text-shadow: none; }
+        body.light-theme .scroll-indicator { color: var(--color-muted-light); }
+        body.light-theme .main-content-wrapper { background-color: var(--bg-color-light); }
+        body.light-theme .line { color: var(--color-muted-light); }
+        body.light-theme .revealed-text { color: var(--color-foreground-light); }
+        body.light-theme #brands { background-color:var(--bg-color-light); border-top-color: var(--border-color-light); border-bottom-color: var(--border-color-light); }
+        body.light-theme .brand-logo { filter: grayscale(100%) brightness(0.5) contrast(1.2); opacity: 0.8; }
+        body.light-theme .brand-logo:hover { filter: grayscale(0%) brightness(1); opacity: 1; }
+        body.light-theme .service-nav-item { -webkit-text-stroke-color: var(--color-muted-light); }
+        body.light-theme .service-nav-item.active, body.light-theme .service-nav-item:hover { color: var(--color-foreground-light); -webkit-text-stroke-color: var(--color-foreground-light); }
+        body.light-theme .service-content-title, body.light-theme .service-content-list li::before { color: var(--color-foreground-light); }
+        body.light-theme .service-content-description, body.light-theme .service-content-list li { color: var(--color-muted-light); }
+        body.light-theme #portfolio { background-color: var(--bg-color-light); }
+        body.light-theme .carousel-item { background-color: #fff; border-color: var(--border-color-light); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        body.light-theme .item-image-wrapper { border-bottom-color: var(--border-color-light); }
+        body.light-theme .item-content h3 { color: var(--color-foreground-light); }
+        body.light-theme .item-content p { color: var(--color-muted-light); }
+        body.light-theme .process-container-new::before { background: linear-gradient(to bottom, transparent, var(--border-color-light) 10%, var(--border-color-light) 90%, transparent); }
+        body.light-theme .process-number-new { -webkit-text-stroke-color: var(--border-color-light); }
+        body.light-theme .process-number-fill { color: var(--color-foreground-light); -webkit-text-stroke-color: var(--color-foreground-light); }
+        body.light-theme .process-title-new, body.light-theme .faq-question { color: var(--color-foreground-light); }
+        body.light-theme .faq-question:hover { color: #000; }
+        body.light-theme .process-description-new, body.light-theme .faq-answer p { color: var(--color-muted-light); }
+        body.light-theme .faq-item { border-bottom-color: var(--border-color-light); }
+        body.light-theme #contact { background-color: var(--bg-color-light); }
+        body.light-theme .contact-heading-revamped { color: var(--color-foreground-light); }
+        body.light-theme .heading-graphic svg circle { fill: var(--color-foreground-light); }
+        body.light-theme .heading-graphic svg path { stroke: var(--color-foreground-light); }
+        body.light-theme .address-col h4 { color: var(--color-foreground-light); }
+        body.light-theme .address-col p, body.light-theme .contact-form-revamped label, body.light-theme .budget-selector .budget-label { color: var(--color-muted-light); }
+        body.light-theme .contact-form-revamped input, body.light-theme .contact-form-revamped textarea { border-bottom-color: var(--border-color-light); color: var(--color-foreground-light); }
+        body.light-theme .input-group-revamped:focus-within::after { background-color: var(--color-foreground-light); }
+        body.light-theme .contact-form-revamped input:focus + label, body.light-theme .contact-form-revamped input:not(:placeholder-shown) + label, body.light-theme .contact-form-revamped textarea:focus + label, body.light-theme .contact-form-revamped textarea:not(:placeholder-shown) + label { color: var(--color-foreground-light); }
+        body.light-theme .budget-btn { border-color: var(--border-color-light); color: var(--color-muted-light); }
+        body.light-theme .budget-btn.active { background-color: var(--color-foreground-light); color: var(--bg-color-light); border-color: var(--color-foreground-light); }
+        body.light-theme footer { background-color: var(--bg-color-light); color: var(--color-muted-light); }
+        body.light-theme .footer-text-color, body.light-theme .footer-link-color { color: var(--color-muted-light); }
+        body.light-theme .footer-link-color:hover { color: var(--color-foreground-light); }
+        body.light-theme .footer-bottom-text-color { color: #888; }
+        body.light-theme .giant-footer-text { color: var(--color-foreground-light); }
+        body.light-theme footer form input { color: var(--color-foreground-light); }
+        body.light-theme footer form input::placeholder { color: var(--color-muted-light); opacity: 0.7; }
+        body.light-theme footer form button { color: var(--color-muted-light); }
+        body.light-theme footer .border-gray-700, body.light-theme footer .border-gray-800 { border-color: var(--border-color-light); }
+        body.light-theme .mobile-menu { background-color: var(--bg-color-light); }
+        body.light-theme .mobile-menu-link { color: var(--color-muted-light); }
+        body.light-theme .mobile-menu-link:hover { color: var(--color-foreground-light); }
+        body.light-theme .mobile-menu-close { color: var(--color-foreground-light); }
+        .lang-btn { background: transparent; border: none; font-weight: 500; transition: all 0.3s ease; cursor: none; color: var(--color-muted); padding: 0.25rem 0.75rem; }
+        .lang-btn.active { background-color: var(--color-foreground); color: var(--bg-color); }
+        #lang-switcher-container { transition: border-color 0.5s ease; border: 1px solid rgba(255,255,255,0.2); }
+        body.light-theme #mainHeader .lang-btn { color: var(--color-muted-light); }
+        body.light-theme #mainHeader .lang-btn.active { background-color: var(--color-foreground-light); color: var(--bg-color-light); }
+        body.light-theme #lang-switcher-container { border-color: rgba(0,0,0,0.15); }
+        body.on-light-section #lang-switcher-container { border-color: rgba(0,0,0,0.15); }
+        body.on-light-section #mainHeader .lang-btn { color: var(--color-muted-light); }
+        body.on-light-section #mainHeader .lang-btn.active { background-color: var(--color-foreground-light); color: var(--bg-color-light); }
+        .cookie-consent-banner { position: fixed; bottom: -200px; left: 1.5rem; right: 1.5rem; max-width: 600px; margin: 0 auto; z-index: 10000; padding: 1.5rem; border-radius: 1rem; transition: bottom 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .cookie-consent-banner.show { bottom: 1.5rem; }
+        .cookie-consent-banner p { color: var(--color-muted); font-size: 0.9rem; line-height: 1.6; }
+        .cookie-consent-banner .btn { margin-top: 1rem; }
+        body.light-theme .cookie-consent-banner p { color: var(--color-muted-light); }
+
+        /*
+        ================================================================================
+        | SECTION: MOBILE & RESPONSIVE IMPROVEMENTS (ALL FIXES ARE HERE)               |
+        ================================================================================
+        */
+        @media (max-width: 1024px) { 
+            .side-navigation, .fixed-actions { display: none; } 
+            /* FIX: Center align the 'About Me' text container and its content */
+            .about-wrapper { align-items: center; } 
+            .text-container { align-items: center; margin-left: auto; margin-right: auto; } 
+            .line { text-align: center; } 
+        }
+
+        @media (max-width: 900px) { 
+            .contact-container-revamped { grid-template-columns: 1fr; gap: 4rem; } 
+            .contact-left { text-align: center; } 
+            .contact-addresses { justify-content: center; text-align: left; } 
+            .contact-arrow-button { align-self: center; margin-top: 2rem; } 
+        }
+
+        @media (max-width: 768px) { 
+            section { padding: 6rem 1.5rem; } 
+            #hero h1 { font-size: clamp(2.8rem, 12vw, 4rem); }
+            #hero p { font-size: clamp(1.2rem, 6vw, 2rem); } /* FIX: Reduced subtitle font size */
+
+            .about-wrapper > .flex { align-items: center; width: 100%; flex-direction: column; }
+            .about-wrapper > .flex > .btn { width: 90%; justify-content: center; }
+            
+            .services-layout-grid { grid-template-columns: 1fr; gap: 3rem; } 
+            .services-nav-list { align-items: center; gap: 1.5rem; } 
+            .service-nav-item { font-size: clamp(2rem, 8vw, 2.5rem); text-align: center; } 
+            
+            /* FIX: Make portfolio items much larger and centered on mobile */
+            .carousel-item { width: 85vw; margin: 0 2.5vw; } 
+            .carousel-container { height: auto; min-height: 65vh; }
+            
+            .form-row { flex-direction: column; gap: 0; } 
+            .input-group-revamped { margin-bottom: 2.5rem; } 
+            
+            /* FIX: Adjust giant footer text to prevent wrapping */
+            .giant-footer-text { 
+                font-size: clamp(4rem, 24vw, 8rem); /* Adjusted clamp for better fit */
+                white-space: nowrap; /* Force it to stay on one line */
+                word-break: normal; /* Remove the aggressive word-break */
+            } 
+            
+            footer { padding: 4rem 1.5rem 1.5rem; } 
+            
+            .process-container-new::before { left: 30px; } 
+            .process-step-new, .process-step-new:nth-child(even) { grid-template-columns: 60px 1fr; gap: 2rem; } 
+            .process-number-new, .process-step-new:nth-child(even) .process-number-new { grid-column: 1 / 2; text-align: center; font-size: 2.5rem; -webkit-text-stroke-width: 1px; } 
+            .process-title-new { font-size: clamp(1.5rem, 5vw, 2rem); }
+            .process-content-new, .process-step-new:nth-child(even) .process-content-new { grid-column: 2 / 3; text-align: left; }
+            
+            .contact-heading-revamped { font-size: clamp(3rem, 15vw, 6rem); }
+            .budget-options { gap: 0.5rem; justify-content: center; }
+            .budget-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            section { padding: 5rem 1rem; }
+            .section-title { font-size: clamp(2rem, 8vw, 2.5rem); }
+            #hero { min-height: 90vh; }
+            .about-wrapper .btn { padding: 1rem; font-size: 1rem; }
+            .footer-bottom-text-color { flex-direction: column; text-align: center; gap: 1rem; }
+            #mainHeader nav { padding-left: 1rem; padding-right: 1rem; }
+            .mobile-menu-close { top: 1rem; right: 1rem; }
+            .cookie-consent-banner { padding: 1rem; bottom: -200px; }
+            .cookie-consent-banner.show { bottom: 1rem; }
+            .cookie-consent-banner .btn { font-size: 0.8rem; padding: 0.7rem 1rem; }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "url": "https://www.tomaszitko.cz/",
+          "name": "Webdesign & Vývoj na Míru v Praze | Tomáš Zítko Portfolio",
+          "description": "Profesionální freelance webdesignér a vývojář v Praze. Tvořím rychlé, moderní a responzivní weby s důrazem na UX, SEO a digitální růst vaší značky.",
+          "inLanguage": "cs-CZ",
+          "isPartOf": {
+            "@type": "WebSite",
+            "url": "https://www.tomaszitko.cz/",
+            "name": "Tomáš Zítko Web Design & Development",
+            "publisher": {
+              "@type": "ProfessionalService",
+              "name": "Tomáš Zítko"
+            }
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "name": "Tomáš Zítko - Freelance Web Design & Vývoj",
+          "image": "https://www.tomaszitko.cz/assets/images/og-image.jpg",
+          "@id": "https://www.tomaszitko.cz/#service",
+          "telephone": "+420-123-456-789",
+          "email": "kontakt@tomaszitko.cz",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Praha",
+            "addressCountry": "CZ"
+          },
+          "url": "https://www.tomaszitko.cz/",
+          "priceRange": "$$$",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Czech Republic"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Služby",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Webdesign & UX" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vývoj na míru" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digitální marketing" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatizace procesů" } }
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Jak dlouho trvá vytvoření webu?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Časový rámec se liší podle složitosti. Jednoduchá webová prezentace může být hotová za 2-4 týdny. Komplexnější projekt, jako je e-shop nebo webová aplikace, obvykle trvá 2-3 měsíce. Po naší úvodní konzultaci vám poskytnu detailní časový odhad."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Kolik stojí vytvoření webových stránek?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Každý projekt je unikátní, a proto i cena je individuální. Faktory jako rozsah funkcí, design na míru a složitost integrací ovlivňují konečnou cenu. Rád vám připravím nezávaznou cenovou nabídku přesně podle vašich potřeb."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Jaký je váš proces od A do Z?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Můj proces je transparentní a zaměřený na spolupráci. Začínáme úvodní konzultací a strategií, pokračujeme přes design a prototypování, následně vývoj a testování, a končíme spuštěním a následnou podporou. Během celého procesu jste v obraze a máte možnost ovlivnit výsledek."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Poskytujete i následnou správu a podporu?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ano, rozhodně. Po spuštění projektu nabízím balíčky údržby, které zahrnují pravidelné aktualizace, zálohování, bezpečnostní monitoring a technickou podporu. Mým cílem je, aby váš web byl vždy bezpečný, rychlý a funkční."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="is-loading">
+
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <span class="loader-char">T</span><span class="loader-char">O</span><span class="loader-char">M</span><span class="loader-char">Á</span><span class="loader-char">Š</span><span class="loader-char"> </span><span class="loader-char">Z</span><span class="loader-char">Í</span><span class="loader-char">T</span><span class="loader-char">K</span><span class="loader-char">O</span>
+        </div>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+    
+    <header class="fixed top-0 left-0 w-full z-50 transition-transform duration-300 ease-in-out" id="mainHeader">
+        <nav class="max-w-4xl mx-auto my-6 px-6 py-3 rounded-full glass-effect flex justify-between items-center shadow-lg">
+            <a href="#hero" class="text-xl font-bold tracking-wider text-white">T. ZÍTKO</a>
+            <div class="hidden lg:flex items-center space-x-8 text-sm">
+                <a href="#about" class="text-gray-300 hover:text-white creative-underline" data-lang-key="nav_about">O mně</a>
+                <a href="#services" class="text-gray-300 hover:text-white creative-underline" data-lang-key="nav_services">Služby</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-white creative-underline" data-lang-key="nav_portfolio">Portfolio</a>
+                <a href="#faq" class="text-gray-300 hover:text-white creative-underline" data-lang-key="nav_faq">FAQ</a>
+                <div id="lang-switcher-container" class="flex items-center rounded-full text-xs">
+                    <button data-lang="cz" class="lang-btn rounded-full">CZ</button>
+                    <button data-lang="en" class="lang-btn rounded-full">EN</button>
+                </div>
+            </div>
+            <a href="#contact" class="hidden lg:inline-block btn" style="padding: 0.5rem 1.25rem; font-size: 0.875rem;" data-lang-key="nav_connect">Spojme se</a>
+            <button class="lg:hidden p-2 -mr-2" id="mobileMenuOpen" aria-label="Otevřít menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16" /></svg>
+            </button>
+        </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Zavřít menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <ul class="mobile-menu-nav">
+            <li><a href="#hero" class="mobile-menu-link" data-lang-key="mobile_home">Domů</a></li>
+            <li><a href="#about" class="mobile-menu-link" data-lang-key="mobile_about">O mně</a></li>
+            <li><a href="#services" class="mobile-menu-link" data-lang-key="mobile_services">Služby</a></li>
+            <li><a href="#portfolio" class="mobile-menu-link" data-lang-key="mobile_portfolio">Portfolio</a></li>
+            <li><a href="#contact" class="mobile-menu-link" data-lang-key="mobile_contact">Kontakt</a></li>
+        </ul>
+    </div>
+
+    <aside class="side-navigation">
+        <div class="side-nav-list">
+            <a href="#hero" class="side-nav-item" data-section="hero"><span class="side-nav-label" data-lang-key="side_home">Domů</span><div class="side-nav-dot"></div></a>
+            <a href="#about" class="side-nav-item" data-section="about"><span class="side-nav-label" data-lang-key="side_about">O mně</span><div class="side-nav-dot"></div></a>
+            <a href="#services" class="side-nav-item" data-section="services"><span class="side-nav-label" data-lang-key="side_services">Služby</span><div class="side-nav-dot"></div></a>
+            <a href="#stats" class="side-nav-item" data-section="stats"><span class="side-nav-label" data-lang-key="side_results">Výsledky</span><div class="side-nav-dot"></div></a>
+            <a href="#portfolio" class="side-nav-item" data-section="portfolio"><span class="side-nav-label" data-lang-key="side_portfolio">Portfolio</span><div class="side-nav-dot"></div></a>
+            <a href="#process" class="side-nav-item" data-section="process"><span class="side-nav-label" data-lang-key="side_process">Proces</span><div class="side-nav-dot"></div></a>
+            <a href="#faq" class="side-nav-item" data-section="faq"><span class="side-nav-label" data-lang-key="side_faq">FAQ</span><div class="side-nav-dot"></div></a>
+            <a href="#contact" class="side-nav-item" data-section="contact"><span class="side-nav-label" data-lang-key="side_contact">Kontakt</span><div class="side-nav-dot"></div></a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="background-image-container"></div>
+        <section id="hero">
+            <div class="hero-content relative z-10 px-4">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white" data-lang-key="hero_title">Webdesign a Vývoj v Praze</h1>
+                <p class="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium uppercase tracking-tight text-gray-300" data-lang-key="hero_subtitle">Tvořím digitální zážitky, které rostou.</p>
+            </div>
+            <div class="scroll-indicator"><span data-lang-key="scroll_indicator">Objevujte více</span><span class="arrow">↓</span></div>
+        </section>
+
+        <div class="main-content-wrapper">
+            <section id="about">
+                <div class="about-wrapper">
+                    <div class="text-container">
+                        <div class="line"><span data-lang-key="about_line_1">Jsem Tomáš Zítko, digitální designér</span><span class="revealed-text" data-lang-key="about_line_1_reveal">Jsem Tomáš Zítko, digitální designér</span></div>
+                        <div class="line"><span data-lang-key="about_line_2">a vývojář s vášní pro tvorbu</span><span class="revealed-text" data-lang-key="about_line_2_reveal">a vývojář s vášní pro tvorbu</span></div>
+                        <div class="line"><span data-lang-key="about_line_3">pohlcujících online zážitků.</span><span class="revealed-text" data-lang-key="about_line_3_reveal">pohlcujících online zážitků.</span></div>
+                        <div class="line"><span data-lang-key="about_line_4">Zaměřuji se na průsečík čistého</span><span class="revealed-text" data-lang-key="about_line_4_reveal">Zaměřuji se na průsečík čistého</span></div>
+                        <div class="line"><span data-lang-key="about_line_5">designu, plynulých animací</span><span class="revealed-text" data-lang-key="about_line_5_reveal">designu, plynulých animací</span></div>
+                        <div class="line"><span data-lang-key="about_line_6">a robustní funkčnosti. Věřím,</span><span class="revealed-text" data-lang-key="about_line_6_reveal">a robustní funkčnosti. Věřím,</span></div>
+                        <div class="line"><span data-lang-key="about_line_7">že nejlepší digitální produkty</span><span class="revealed-text" data-lang-key="about_line_7_reveal">že nejlepší digitální produkty</span></div>
+                        <div class="line"><span data-lang-key="about_line_8">nejsou jen nástroje, ale příběhy,</span><span class="revealed-text" data-lang-key="about_line_8_reveal">nejsou jen nástroje, ale příběhy,</span></div>
+                        <div class="line"><span data-lang-key="about_line_9">které vypráví vaše značka.</span><span class="revealed-text" data-lang-key="about_line_9_reveal">které vypráví vaše značka.</span></div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
+                        <a href="#contact" class="btn">
+                            <span data-lang-key="about_btn_connect">Spojme se</span>
+                            <span class="btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </span>
+                        </a>
+                        <a href="#portfolio" class="btn btn-light">
+                            <span data-lang-key="about_btn_work">Moje práce</span>
+                            <span class="btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            </span>
+                        </a>
+                         <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="btn">
+                            <span data-lang-key="about_btn_meeting">Rezervovat schůzku</span>
+                            <span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="brands">
+                <h2 class="sr-only" data-lang-key="brands_sr_only">Klienti a partneři</h2>
+                <div class="brands-scroller" aria-hidden="true">
+                    <div class="brands-scroller-inner">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Logo Google" class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Microsoft_logo.svg" alt="Logo Microsoft" class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Logo Nike" class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Logo Apple" class="brand-logo" style="max-height: 48px;"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg" alt="Logo YouTube" class="brand-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Logo Google" class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Microsoft_logo.svg" alt="Logo Microsoft" class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Logo Nike" class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Logo Apple" class="brand-logo" style="max-height: 48px;"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg" alt="Logo YouTube" class="brand-logo">
+                    </div>
+                </div>
+            </section>
+
+            <section id="services">
+                <div class="services-layout-grid">
+                    <div>
+                        <h2 class="sr-only" data-lang-key="services_sr_only">Služby, které nabízím</h2>
+                        <div class="services-nav-list">
+                            <button class="service-nav-item active" data-service="design" data-lang-key="service_nav_design">Webdesign & UX</button>
+                            <button class="service-nav-item" data-service="websites" data-lang-key="service_nav_websites">Vývoj na míru</button>
+                            <button class="service-nav-item" data-service="marketing" data-lang-key="service_nav_marketing">Digitální marketing</button>
+                            <button class="service-nav-item" data-service="automations" data-lang-key="service_nav_automations">Automatizace</button>
+                        </div>
+                    </div>
+                    <div class="services-content-display glass-effect" aria-live="polite"></div>
+                </div>
+            </section>
+
+            <section id="stats" class="section-light">
+                <div class="section-header">
+                    <p class="section-eyebrow" data-lang-key="stats_eyebrow">MÉ VÝSLEDKY</p>
+                    <h2 class="section-title" data-lang-key="stats_title">Úspěch definovaný daty</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-number">98</div><div class="stat-label" data-lang-key="stat_1_label">Spokojenost klientů (%)</div></div>
+                    <div class="stat-card"><div class="stat-number">50</div><div class="stat-label" data-lang-key="stat_2_label">Dokončených projektů</div></div>
+                    <div class="stat-card"><div class="stat-number">1.2</div><div class="stat-label" data-lang-key="stat_3_label">Průměrná rychlost (s)</div></div>
+                </div>
+            </section>
+
+            <section id="portfolio">
+                <div class="portfolio-content-wrapper">
+                    <div class="section-header">
+                        <p class="section-eyebrow" data-lang-key="portfolio_eyebrow">PORTFOLIO</p>
+                        <h2 class="section-title" data-lang-key="portfolio_title">Vybrané projekty</h2>
+                    </div>
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper" id="carouselWrapper"></div>
+                    </div>
+                    <a href="#" class="btn">
+                        <span data-lang-key="portfolio_btn_all">Zobrazit všechny projekty</span>
+                        <span class="btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </span>
+                    </a>
+                </div>
+            </section>
+
+            <section id="process">
+                <div class="section-header">
+                    <p class="section-eyebrow" data-lang-key="process_eyebrow">MŮJ PROCES</p>
+                    <h2 class="section-title" data-lang-key="process_title">Od vize k realitě</h2>
+                </div>
+                <div class="process-container-new">
+                    <div class="process-step-new">
+                        <div class="process-number-new">01<span class="process-number-fill">01</span></div>
+                        <div class="process-content-new">
+                            <h3 class="process-title-new" data-lang-key="process_1_title">Strategie & Analýza</h3>
+                            <p class="process-description-new" data-lang-key="process_1_desc">Každý úspěšný projekt začíná hlubokým pochopením vašich cílů. Společně definujeme klíčové metriky a vytvoříme strategii na míru.</p>
+                        </div>
+                    </div>
+                    <div class="process-step-new">
+                        <div class="process-number-new">02<span class="process-number-fill">02</span></div>
+                        <div class="process-content-new">
+                            <h3 class="process-title-new" data-lang-key="process_2_title">Design & Prototypování</h3>
+                            <p class="process-description-new" data-lang-key="process_2_desc">Tvořím vizuálně atraktivní a intuitivní designy. Vytvářím interaktivní prototypy, které nám umožní doladit každý detail ještě před zahájením vývoje.</p>
+                        </div>
+                    </div>
+                    <div class="process-step-new">
+                        <div class="process-number-new">03<span class="process-number-fill">03</span></div>
+                        <div class="process-content-new">
+                            <h3 class="process-title-new" data-lang-key="process_3_title">Vývoj & Implementace</h3>
+                            <p class="process-description-new" data-lang-key="process_3_desc">Píšu čistý a efektivní kód. Oživuji design s důrazem na výkon, responzivitu a bezchybnou funkčnost na všech zařízeních.</p>
+                        </div>
+                    </div>
+                    <div class="process-step-new">
+                        <div class="process-number-new">04<span class="process-number-fill">04</span></div>
+                        <div class="process-content-new">
+                            <h3 class="process-title-new" data-lang-key="process_4_title">Spuštění & Růst</h3>
+                            <p class="process-description-new" data-lang-key="process_4_desc">Spuštěním projektu naše spolupráce nekončí. Poskytuji následnou podporu, analyzuji výsledky a navrhuji další kroky pro váš online růst.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="faq">
+                <div class="section-header">
+                    <p class="section-eyebrow" data-lang-key="faq_eyebrow">ČASTO KLADENÉ OTÁZKY</p>
+                    <h2 class="section-title" data-lang-key="faq_title">Máte otázky? Mám odpovědi.</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-lang-key="faq_1_q">Jak dlouho trvá vytvoření webu?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq_1_a">Časový rámec se liší podle složitosti. Jednoduchá webová prezentace může být hotová za 2-4 týdny. Komplexnější projekt, jako je e-shop nebo webová aplikace, obvykle trvá 2-3 měsíce. Po naší úvodní konzultaci vám poskytnu detailní časový odhad.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-lang-key="faq_2_q">Kolik stojí vytvoření webových stránek?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq_2_a">Každý projekt je unikátní, a proto i cena je individuální. Faktory jako rozsah funkcí, design na míru a složitost integrací ovlivňují konečnou cenu. Rád vám připravím nezávaznou cenovou nabídku přesně podle vašich potřeb.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-lang-key="faq_3_q">Jaký je váš proces od A do Z?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq_3_a">Můj proces je transparentní a zaměřený na spolupráci. Začínáme úvodní konzultací a strategií, pokračujeme přes design a prototypování, následně vývoj a testování, a končíme spuštěním a následnou podporou. Během celého procesu jste v obraze a máte možnost ovlivnit výsledek.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-lang-key="faq_4_q">Poskytujete i následnou správu a podporu?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq_4_a">Ano, rozhodně. Po spuštění projektu nabízím balíčky údržby, které zahrnují pravidelné aktualizace, zálohování, bezpečnostní monitoring a technickou podporu. Mým cílem je, aby váš web byl vždy bezpečný, rychlý a funkční.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-lang-key="faq_5_q">S jakými klienty nejčastěji spolupracujete?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq_5_a">Spolupracuji s širokým spektrem klientů – od startupů a živnostníků po středně velké firmy, které chtějí inovovat a posunout svou digitální prezentaci na vyšší úroveň. Důležitá je pro mě vize a odhodlání klienta, nikoliv velikost jeho firmy.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <div class="contact-container-revamped mx-auto">
+                    <div class="contact-left">
+                        <h2 class="contact-heading-revamped">
+                            <span data-lang-key="contact_heading_1">POJĎME</span>
+                            <div class="heading-graphic" aria-hidden="true">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
+                                    <circle cx="50" cy="25" r="25" fill="white"/>
+                                    <path d="M 50 100 A 50 50 0 0 1 100 50" fill="none" stroke="white" />
+                                </svg>
+                            </div>
+                            <br><span data-lang-key="contact_heading_2">SE</span><br><span data-lang-key="contact_heading_3">SPOJIT</span>
+                        </h2>
+                        <div class="contact-addresses">
+                            <div class="address-col">
+                                <h4 data-lang-key="contact_addr_1_title">SCHŮZKY PRAHA</h4>
+                                <p data-lang-key="contact_addr_1_desc">Osobní či online konzultace<br>pro projekty v Praze<br>a okolí.</p>
+                            </div>
+                            <div class="address-col">
+                                <h4 data-lang-key="contact_addr_2_title">KONZULTACE ONLINE</h4>
+                                <p data-lang-key="contact_addr_2_desc">Pro klienty z celé ČR<br>i zahraničí nabízím<br>efektivní online schůzky.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-right">
+                        <form class="contact-form-revamped" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="751fd9d5-7d4d-49af-ab47-69904d1024b8">
+                            <div class="form-row">
+                                <div class="input-group-revamped">
+                                    <input type="text" id="name" name="name" required placeholder=" ">
+                                    <label for="name" data-lang-key="form_name_label">Celé jméno</label>
+                                </div>
+                                <div class="input-group-revamped">
+                                    <input type="email" id="email" name="email" required placeholder=" ">
+                                    <label for="email" data-lang-key="form_email_label">E-mail</label>
+                                </div>
+                            </div>
+                             <div class="input-group-revamped">
+                                    <input type="tel" id="phone" name="phone" required placeholder=" ">
+                                    <label for="phone" data-lang-key="form_phone_label">Telefon</label>
+                            </div>
+                            <div class="budget-selector">
+                                <div class="budget-options">
+                                    <button type="button" class="budget-btn" data-value="25k-75k" data-lang-key="budget_1">25k - 75k Kč</button>
+                                    <button type="button" class="budget-btn" data-value="75k-175k" data-lang-key="budget_2">75k - 175k Kč</button>
+                                    <button type="button" class="budget-btn" data-value="175k+" data-lang-key="budget_3">175k+ Kč</button>
+                                </div>
+                                <input type="hidden" id="budget" name="budget">
+                            </div>
+                            <div class="input-group-revamped">
+                                <textarea id="message" name="message" rows="3" required placeholder=" "></textarea>
+                                <label for="message" data-lang-key="form_message_label">Vaše zpráva</label>
+                            </div>
+                            <button type="submit" class="contact-arrow-button btn" aria-label="Odeslat formulář" data-lang-key="form_submit_aria">
+                                <span data-lang-key="form_submit_text">Odeslat</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                        </form>
+                        <p id="form-message" class="mt-4 text-center" style="display: none;"></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <div class="fixed-actions">
+        <button id="themeToggleBtn" class="action-btn" aria-label="Přepnout téma">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <div class="fixed-actions-divider"></div>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="action-btn" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="action-btn" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+    </div>
+
+    <footer>
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-start mb-24">
+                <div>
+                    <h3 class="text-sm uppercase tracking-widest footer-text-color mb-6" data-lang-key="footer_newsletter_title">Odebírejte novinky a získejte přehled<br>o trendech v digitálním světě.</h3>
+                    <form id="newsletterForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="751fd9d5-7d4d-49af-ab47-69904d1024b8">
+                        <label for="newsletter-email" class="sr-only" data-lang-key="footer_newsletter_label">Váš e-mail</label>
+                        <input type="email" name="email" id="newsletter-email" placeholder="VÁŠ E-MAIL" data-lang-key="footer_newsletter_placeholder" class="bg-transparent w-full border-none text-white placeholder-gray-500 focus:ring-0 uppercase tracking-widest text-sm" required>
+                        <button type="submit" class="text-gray-400 hover:text-white text-2xl transition-colors" aria-label="Odebírat novinky" data-lang-key="footer_newsletter_submit_aria"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+                    </form>
+                    <p id="newsletter-message" class="mt-4 text-sm" style="display: none;"></p>
+                </div>
+                <div class="grid grid-cols-2 gap-8 text-sm">
+                    <ul class="space-y-4">
+                        <li><a href="#services" class="footer-link-color transition-colors" data-lang-key="footer_nav_services">Služby</a></li>
+                        <li><a href="#portfolio" class="footer-link-color transition-colors" data-lang-key="footer_nav_portfolio">Portfolio</a></li>
+                        <li><a href="#about" class="footer-link-color transition-colors" data-lang-key="footer_nav_about">O mně</a></li>
+                    </ul>
+                    <ul class="space-y-4">
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="footer-link-color transition-colors" data-lang-key="footer_social_insta">Instagram</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="footer-link-color transition-colors" data-lang-key="footer_social_fb">Facebook</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="footer-link-color transition-colors" data-lang-key="footer_social_linkedin">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center my-24 overflow-hidden">
+                <h2 class="giant-footer-text" data-lang-key="footer_giant_text">KONTAKT</h2>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs footer-bottom-text-color border-t border-gray-800 pt-8 gap-4">
+                <p data-lang-key="footer_copyright">&copy; <span id="currentYear"></span> Tomáš Zítko. Všechna práva vyhrazena.</p>
+                <div class="flex items-center gap-x-6">
+                    <a href="#contact" class="hover:text-white transition-colors" data-lang-key="footer_bottom_contact">Kontakt</a>
+                    <a href="legal/privacy-policy.html" class="hover:text-white transition-colors" data-lang-key="footer_bottom_privacy">Ochrana údajů</a>
+                    <a href="legal/cookie-policy.html" class="hover:text-white transition-colors" data-lang-key="footer_bottom_cookies">Zásady cookies</a>
+                    <a href="accessibility.html" class="hover:text-white transition-colors" data-lang-key="footer_bottom_accessibility">Přístupnost</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" class="cookie-consent-banner glass-effect">
+      <p data-lang-key="cookie_text">Tato webová stránka používá soubory cookies k vylepšení vašeho zážitku a pro účely analýzy. Souhlasíte s jejich použitím?</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+          <button id="accept-cookies" class="btn btn-light flex-1" data-lang-key="cookie_accept">Souhlasím</button>
+          <button id="decline-cookies" class="btn flex-1" data-lang-key="cookie_decline">Odmítnout</button>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // --- TRANSLATION DATA & LOGIC ---
+            const translations = {
+                cz: {
+                    html_title: "Webdesign & Vývoj na Míru v Praze | Tomáš Zítko Portfolio",
+                    meta_description: "Profesionální freelance webdesignér a vývojář v Praze. Tvořím rychlé, moderní a responzivní weby s důrazem na UX, SEO a digitální růst vaší značky.",
+                    og_title: "Webdesign & Vývoj na Míru v Praze | Tomáš Zítko Portfolio",
+                    og_description: "Tvořím rychlé, moderní a responzivní weby s důrazem na UX, SEO a digitální růst vaší značky.",
+                    twitter_title: "Webdesign & Vývoj na Míru v Praze | Tomáš Zítko Portfolio",
+                    twitter_description: "Tvořím rychlé, moderní a responzivní weby s důrazem na UX, SEO a digitální růst vaší značky.",
+                    nav_about: "O mně",
+                    nav_services: "Služby",
+                    nav_portfolio: "Portfolio",
+                    nav_faq: "FAQ",
+                    nav_connect: "Spojme se",
+                    mobile_home: "Domů",
+                    mobile_about: "O mně",
+                    mobile_services: "Služby",
+                    mobile_portfolio: "Portfolio",
+                    mobile_contact: "Kontakt",
+                    side_home: "Domů",
+                    side_about: "O mně",
+                    side_services: "Služby",
+                    side_results: "Výsledky",
+                    side_portfolio: "Portfolio",
+                    side_process: "Proces",
+                    side_faq: "FAQ",
+                    side_contact: "Kontakt",
+                    hero_title: "Webdesign a Vývoj v Praze",
+                    hero_subtitle: "Tvořím digitální zážitky, které rostou.",
+                    scroll_indicator: "Objevujte více",
+                    about_line_1: "Jsem Tomáš Zítko, digitální designér",
+                    about_line_1_reveal: "Jsem Tomáš Zítko, digitální designér",
+                    about_line_2: "a vývojář s vášní pro tvorbu",
+                    about_line_2_reveal: "a vývojář s vášní pro tvorbu",
+                    about_line_3: "pohlcujících online zážitků.",
+                    about_line_3_reveal: "pohlcujících online zážitků.",
+                    about_line_4: "Zaměřuji se na průsečík čistého",
+                    about_line_4_reveal: "Zaměřuji se na průsečík čistého",
+                    about_line_5: "designu, plynulých animací",
+                    about_line_5_reveal: "designu, plynulých animací",
+                    about_line_6: "a robustní funkčnosti. Věřím,",
+                    about_line_6_reveal: "a robustní funkčnosti. Věřím,",
+                    about_line_7: "že nejlepší digitální produkty",
+                    about_line_7_reveal: "že nejlepší digitální produkty",
+                    about_line_8: "nejsou jen nástroje, ale příběhy,",
+                    about_line_8_reveal: "nejsou jen nástroje, ale příběhy,",
+                    about_line_9: "které vypráví vaše značka.",
+                    about_line_9_reveal: "které vypráví vaše značka.",
+                    about_btn_connect: "Spojme se",
+                    about_btn_work: "Moje práce",
+                    about_btn_meeting: "Rezervovat schůzku",
+                    brands_sr_only: "Klienti a partneři",
+                    services_sr_only: "Služby, které nabízím",
+                    service_nav_design: "Webdesign & UX",
+                    service_nav_websites: "Vývoj na míru",
+                    service_nav_marketing: "Digitální marketing",
+                    service_nav_automations: "Automatizace",
+                    stats_eyebrow: "MÉ VÝSLEDKY",
+                    stats_title: "Úspěch definovaný daty",
+                    stat_1_label: "Spokojenost klientů (%)",
+                    stat_2_label: "Dokončených projektů",
+                    stat_3_label: "Průměrná rychlost (s)",
+                    portfolio_eyebrow: "Portfolio",
+                    portfolio_title: "Vybrané projekty",
+                    portfolio_btn_all: "Zobrazit všechny projekty",
+                    process_eyebrow: "MŮJ PROCES",
+                    process_title: "Od vize k realitě",
+                    process_1_title: "Strategie & Analýza",
+                    process_1_desc: "Každý úspěšný projekt začíná hlubokým pochopením vašich cílů. Společně definujeme klíčové metriky a vytvoříme strategii na míru.",
+                    process_2_title: "Design & Prototypování",
+                    process_2_desc: "Tvořím vizuálně atraktivní a intuitivní designy. Vytvářím interaktivní prototypy, které nám umožní doladit každý detail ještě před zahájením vývoje.",
+                    process_3_title: "Vývoj & Implementace",
+                    process_3_desc: "Píšu čistý a efektivní kód. Oživuji design s důrazem na výkon, responzivitu a bezchybnou funkčnost na všech zařízeních.",
+                    process_4_title: "Spuštění & Růst",
+                    process_4_desc: "Spuštěním projektu naše spolupráce nekončí. Poskytuji následnou podporu, analyzuji výsledky a navrhuji další kroky pro váš online růst.",
+                    faq_eyebrow: "ČASTO KLADENÉ OTÁZKY",
+                    faq_title: "Máte otázky? Mám odpovědi.",
+                    faq_1_q: "Jak dlouho trvá vytvoření webu?",
+                    faq_1_a: "Časový rámec se liší podle složitosti. Jednoduchá webová prezentace může být hotová za 2-4 týdny. Komplexnější projekt, jako je e-shop nebo webová aplikace, obvykle trvá 2-3 měsíce. Po naší úvodní konzultaci vám poskytnu detailní časový odhad.",
+                    faq_2_q: "Kolik stojí vytvoření webových stránek?",
+                    faq_2_a: "Každý projekt je unikátní, a proto i cena je individuální. Faktory jako rozsah funkcí, design na míru a složitost integrací ovlivňují konečnou cenu. Rád vám připravím nezávaznou cenovou nabídku přesně podle vašich potřeb.",
+                    faq_3_q: "Jaký je váš proces od A do Z?",
+                    faq_3_a: "Můj proces je transparentní a zaměřený na spolupráci. Začínáme úvodní konzultací a strategií, pokračujeme přes design a prototypování, následně vývoj a testování, a končíme spuštěním a následnou podporou. Během celého procesu jste v obraze a máte možnost ovlivnit výsledek.",
+                    faq_4_q: "Poskytujete i následnou správu a podporu?",
+                    faq_4_a: "Ano, rozhodně. Po spuštění projektu nabízím balíčky údržby, které zahrnují pravidelné aktualizace, zálohování, bezpečnostní monitoring a technickou podporu. Mým cílem je, aby váš web byl vždy bezpečný, rychlý a funkční.",
+                    faq_5_q: "S jakými klienty nejčastěji spolupracujete?",
+                    faq_5_a: "Spolupracuji s širokým spektrem klientů – od startupů a živnostníků po středně velké firmy, které chtějí inovovat a posunout svou digitální prezentaci na vyšší úroveň. Důležitá je pro mě vize a odhodlání klienta, nikoliv velikost jeho firmy.",
+                    contact_heading_1: "POJĎME",
+                    contact_heading_2: "SE",
+                    contact_heading_3: "SPOJIT",
+                    contact_addr_1_title: "SCHŮZKY PRAHA",
+                    contact_addr_1_desc: "Osobní či online konzultace<br>pro projekty v Praze<br>a okolí.",
+                    contact_addr_2_title: "KONZULTACE ONLINE",
+                    contact_addr_2_desc: "Pro klienty z celé ČR<br>i zahraničí nabízím<br>efektivní online schůzky.",
+                    form_name_label: "Celé jméno",
+                    form_email_label: "E-mail",
+                    form_phone_label: "Telefon",
+                    form_message_label: "Vaše zpráva",
+                    form_budget_label: "Rozpočet projektu",
+                    budget_1: "25k - 75k Kč",
+                    budget_2: "75k - 175k Kč",
+                    budget_3: "175k+ Kč",
+                    form_submit_aria: "Odeslat formulář",
+                    form_submit_text: "Odeslat",
+                    footer_newsletter_title: "Odebírejte novinky a získejte přehled<br>o trendech v digitálním světě.",
+                    footer_newsletter_placeholder: "VÁŠ E-MAIL",
+                    footer_newsletter_submit_aria: "Odebírat novinky",
+                    footer_nav_services: "Služby",
+                    footer_nav_portfolio: "Portfolio",
+                    footer_nav_about: "O mně",
+                    footer_social_insta: "Instagram",
+                    footer_social_fb: "Facebook",
+                    footer_social_linkedin: "LinkedIn",
+                    footer_giant_text: "KONTAKT",
+                    footer_copyright: "© <span id=\"currentYear\">2025</span> Tomáš Zítko. Všechna práva vyhrazena.",
+                    footer_bottom_contact: "Kontakt",
+                    footer_bottom_privacy: "Ochrana údajů",
+                    footer_bottom_cookies: "Zásady cookies",
+                    cookie_text: "Tato webová stránka používá soubory cookies k vylepšení vašeho zážitku a pro účely analýzy. Souhlasíte s jejich použitím?",
+                    cookie_accept: "Souhlasím",
+                    cookie_decline: "Odmítnout",
+                    form_success_message: "Děkuji za Vaši zprávu! Brzy se ozvu.",
+                    form_error_message: "Něco se pokazilo. Zkuste to znovu.",
+                    newsletter_success_message: "Děkuji za přihlášení!",
+                    newsletter_error_message: "Přihlášení se nezdařilo. Zkuste to znovu.",
+                    serviceData: {
+                        design: { title: "Webdesign & UX", description: "Tvořím moderní a intuitivní designy, které nejen skvěle vypadají, ale především plní své cíle a přináší uživatelům radost z používání.", list: ["UI/UX analýza a návrh", "Interaktivní prototypy", "Vizuální identita a branding", "Responzivní design"], cta: { text: "Chci lepší design", link: "#contact" } },
+                        websites: { title: "Vývoj na míru", description: "Stavím rychlé, bezpečné a škálovatelné webové stránky a aplikace s využitím nejmodernějších technologií. Od jednoduchých prezentací po komplexní systémy.", list: ["Firemní webové stránky", "E-commerce řešení (e-shopy)", "Webové aplikace na míru", "Optimalizace rychlosti a výkonu"], cta: { text: "Potřebuji nový web", link: "#contact" } },
+                        marketing: { title: "Digitální marketing", description: "Pomáhám značkám být vidět. Navrhuji a realizuji marketingové strategie, které zvyšují návštěvnost, generují poptávky a posilují vaši online přítomnost.", list: ["SEO - Optimalizace pro vyhledávače", "Správa sociálních sítí (SMM)", "Obsahový marketing", "PPC reklamní kampaně"], cta: { text: "Zlepšit můj marketing", link: "#contact" } },
+                        automations: { title: "Automatizace", description: "Zefektivňuji vaše firemní procesy pomocí inteligentních automatizací. Ušetřete čas i peníze a věnujte se tomu, co je opravdu důležité.", list: ["Automatizace marketingu", "Integrace nástrojů a API", "Automatizované reporty a analýzy", "Propojení s CRM systémy"], cta: { text: "Chci automatizovat", link: "#contact" } }
+                    }
+                },
+                en: {
+                    html_title: "Custom Web Design & Development in Prague | Tomáš Zítko's Portfolio",
+                    meta_description: "Professional freelance web designer and developer in Prague. I create fast, modern, and responsive websites with a focus on UX, SEO, and your brand's digital growth.",
+                    og_title: "Custom Web Design & Development in Prague | Tomáš Zítko's Portfolio",
+                    og_description: "I create fast, modern, and responsive websites with a focus on UX, SEO, and your brand's digital growth.",
+                    twitter_title: "Custom Web Design & Development in Prague | Tomáš Zítko's Portfolio",
+                    twitter_description: "I create fast, modern, and responsive websites with a focus on UX, SEO, and your brand's digital growth.",
+                    nav_about: "About",
+                    nav_services: "Services",
+                    nav_portfolio: "Portfolio",
+                    nav_faq: "FAQ",
+                    nav_connect: "Let's connect",
+                    mobile_home: "Home",
+                    mobile_about: "About",
+                    mobile_services: "Services",
+                    mobile_portfolio: "Portfolio",
+                    mobile_contact: "Contact",
+                    side_home: "Home",
+                    side_about: "About",
+                    side_services: "Services",
+                    side_results: "Results",
+                    side_portfolio: "Portfolio",
+                    side_process: "Process",
+                    side_faq: "FAQ",
+                    side_contact: "Contact",
+                    hero_title: "Web Design & Development in Prague",
+                    hero_subtitle: "Crafting digital experiences that grow.",
+                    scroll_indicator: "Discover more",
+                    about_line_1: "I'm Tomáš Zítko, a digital designer",
+                    about_line_1_reveal: "I'm Tomáš Zítko, a digital designer",
+                    about_line_2: "and developer with a passion for",
+                    about_line_2_reveal: "and developer with a passion for",
+                    about_line_3: "creating immersive online experiences.",
+                    about_line_3_reveal: "creating immersive online experiences.",
+                    about_line_4: "I focus on the intersection of clean",
+                    about_line_4_reveal: "I focus on the intersection of clean",
+                    about_line_5: "design, fluid animations,",
+                    about_line_5_reveal: "design, fluid animations,",
+                    about_line_6: "and robust functionality. I believe",
+                    about_line_6_reveal: "and robust functionality. I believe",
+                    about_line_7: "the best digital products are not",
+                    about_line_7_reveal: "the best digital products are not",
+                    about_line_8: "just tools, but stories",
+                    about_line_8_reveal: "just tools, but stories",
+                    about_line_9: "that your brand tells.",
+                    about_line_9_reveal: "that your brand tells.",
+                    about_btn_connect: "Let's connect",
+                    about_btn_work: "My work",
+                    about_btn_meeting: "Book a meeting",
+                    brands_sr_only: "Clients and Partners",
+                    services_sr_only: "Services I Offer",
+                    service_nav_design: "Web Design & UX",
+                    service_nav_websites: "Custom Development",
+                    service_nav_marketing: "Digital Marketing",
+                    service_nav_automations: "Automations",
+                    stats_eyebrow: "MY RESULTS",
+                    stats_title: "Success Defined by Data",
+                    stat_1_label: "Client Satisfaction (%)",
+                    stat_2_label: "Completed Projects",
+                    stat_3_label: "Average Speed (s)",
+                    portfolio_eyebrow: "Portfolio",
+                    portfolio_title: "Selected Projects",
+                    portfolio_btn_all: "View All Projects",
+                    process_eyebrow: "MY PROCESS",
+                    process_title: "From Vision to Reality",
+                    process_1_title: "Strategy & Analysis",
+                    process_1_desc: "Every successful project begins with a deep understanding of your goals. Together, we define key metrics and create a tailored strategy.",
+                    process_2_title: "Design & Prototyping",
+                    process_2_desc: "I create visually appealing and intuitive designs. I build interactive prototypes that allow us to refine every detail before development begins.",
+                    process_3_title: "Development & Implementation",
+                    process_3_desc: "I write clean and efficient code. I bring the design to life with a focus on performance, responsiveness, and flawless functionality on all devices.",
+                    process_4_title: "Launch & Growth",
+                    process_4_desc: "Our collaboration doesn't end at launch. I provide ongoing support, analyze results, and suggest next steps for your online growth.",
+                    faq_eyebrow: "FREQUENTLY ASKED QUESTIONS",
+                    faq_title: "Have questions? I have answers.",
+                    faq_1_q: "How long does it take to create a website?",
+                    faq_1_a: "The timeframe varies depending on complexity. A simple presentation website can be ready in 2-4 weeks. A more complex project, like an e-shop or web application, usually takes 2-3 months. I will provide a detailed time estimate after our initial consultation.",
+                    faq_2_q: "How much does a website cost?",
+                    faq_2_a: "Every project is unique, and so is the price. Factors like the scope of features, custom design, and complexity of integrations influence the final cost. I'd be happy to prepare a no-obligation quote tailored to your needs.",
+                    faq_3_q: "What is your process from A to Z?",
+                    faq_3_a: "My process is transparent and collaborative. We start with an initial consultation and strategy, move on to design and prototyping, then development and testing, and conclude with the launch and ongoing support. You are kept in the loop throughout the entire process.",
+                    faq_4_q: "Do you provide ongoing maintenance and support?",
+                    faq_4_a: "Yes, absolutely. After the project launch, I offer maintenance packages that include regular updates, backups, security monitoring, and technical support. My goal is to ensure your website is always secure, fast, and functional.",
+                    faq_5_q: "What kind of clients do you usually work with?",
+                    faq_5_a: "I work with a wide range of clients – from startups and freelancers to medium-sized companies looking to innovate and elevate their digital presence. The client's vision and commitment are what's important to me, not the size of their company.",
+                    contact_heading_1: "LET'S",
+                    contact_heading_2: "",
+                    contact_heading_3: "CONNECT",
+                    contact_addr_1_title: "MEETINGS IN PRAGUE",
+                    contact_addr_1_desc: "In-person or online consultations<br>for projects in and around<br>Prague.",
+                    contact_addr_2_title: "ONLINE CONSULTATIONS",
+                    contact_addr_2_desc: "For clients from all over the country<br>and abroad, I offer<br>effective online meetings.",
+                    form_name_label: "Full Name",
+                    form_email_label: "E-mail",
+                    form_phone_label: "Phone",
+                    form_message_label: "Your Message",
+                    form_budget_label: "Project Budget",
+                    budget_1: "$1k - $3k",
+                    budget_2: "$3k - $7k",
+                    budget_3: "$7k+",
+                    form_submit_aria: "Submit form",
+                    form_submit_text: "Send",
+                    footer_newsletter_title: "Subscribe to the newsletter and get an overview<br>of trends in the digital world.",
+                    footer_newsletter_placeholder: "YOUR E-MAIL",
+                    footer_newsletter_submit_aria: "Subscribe to newsletter",
+                    footer_nav_services: "Services",
+                    footer_nav_portfolio: "Portfolio",
+                    footer_nav_about: "About Me",
+                    footer_social_insta: "Instagram",
+                    footer_social_fb: "Facebook",
+                    footer_social_linkedin: "LinkedIn",
+                    footer_giant_text: "CONTACT",
+                    footer_copyright: "© <span id=\"currentYear\">2025</span> Tomáš Zítko. All rights reserved.",
+                    footer_bottom_contact: "Contact",
+                    footer_bottom_privacy: "Privacy Policy",
+                    footer_bottom_cookies: "Cookie Policy",
+                    cookie_text: "This website uses cookies to enhance your experience and for analytics purposes. Do you agree to their use?",
+                    cookie_accept: "I agree",
+                    cookie_decline: "Decline",
+                    form_success_message: "Thank you for your message! I'll be in touch soon.",
+                    form_error_message: "Something went wrong. Please try again.",
+                    newsletter_success_message: "Thank you for subscribing!",
+                    newsletter_error_message: "Subscription failed. Please try again.",
+                    serviceData: {
+                        design: { title: "Web Design & UX", description: "I create modern and intuitive designs that not only look great but, above all, achieve their goals and delight users.", list: ["UI/UX analysis and design", "Interactive prototypes", "Visual identity and branding", "Responsive design"], cta: { text: "I want a better design", link: "#contact" } },
+                        websites: { title: "Custom Development", description: "I build fast, secure, and scalable websites and applications using the latest technologies. From simple presentations to complex systems.", list: ["Corporate websites", "E-commerce solutions (e-shops)", "Custom web applications", "Speed and performance optimization"], cta: { text: "I need a new website", link: "#contact" } },
+                        marketing: { title: "Digital Marketing", description: "I help brands get seen. I design and implement marketing strategies that increase traffic, generate leads, and strengthen your online presence.", list: ["SEO - Search Engine Optimization", "Social Media Management (SMM)", "Content Marketing", "PPC advertising campaigns"], cta: { text: "Improve my marketing", link: "#contact" } },
+                        automations: { title: "Automations", description: "I streamline your business processes with intelligent automations. Save time and money and focus on what's truly important.", list: ["Marketing automation", "Tool and API integrations", "Automated reports and analytics", "CRM system connections"], cta: { text: "I want to automate", link: "#contact" } }
+                    }
+                }
+            };
+            
+            const renderServiceContent = (serviceKey) => {
+                const currentLang = localStorage.getItem('language') || 'cz';
+                const data = translations[currentLang].serviceData[serviceKey];
+                if (!data) return;
+                const listItemsHtml = data.list.map(item => `<li>${item}</li>`).join('');
+                const ctaButtonHtml = data.cta ? `<a href="${data.cta.link}" class="btn" style="margin-top: 2rem;"><span>${data.cta.text}</span><span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>` : '';
+                const newContentHtml = `<h3 class="service-content-title">${data.title}</h3><p class="service-content-description">${data.description}</p><ul class="service-content-list">${listItemsHtml}</ul>${ctaButtonHtml}`;
+                const servicesContentDisplay = document.querySelector('.services-content-display');
+                gsap.to(servicesContentDisplay, { opacity: 0, y: 20, duration: 0.3, ease: 'power2.in', onComplete: () => {
+                    servicesContentDisplay.innerHTML = newContentHtml;
+                    gsap.fromTo(servicesContentDisplay, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+                }});
+            };
+
+            const setLanguage = (lang) => {
+                document.documentElement.lang = lang;
+                document.querySelectorAll('[data-lang-key]').forEach(el => {
+                    const key = el.dataset.langKey;
+                    const translation = translations[lang][key];
+                    if (translation && typeof translation === 'string') {
+                         if (el.matches('title')) {
+                            el.textContent = translation;
+                        } else if (el.hasAttribute('content')) {
+                            el.setAttribute('content', translation);
+                        } else if (el.hasAttribute('aria-label')) {
+                             el.setAttribute('aria-label', translation);
+                        } else if (el.placeholder !== undefined) {
+                            el.placeholder = translation;
+                        } else {
+                           el.innerHTML = translation;
+                        }
+                    }
+                });
+                
+                document.querySelectorAll('#lang-switcher-container .lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.lang === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                localStorage.setItem('language', lang);
+                const activeService = document.querySelector('.service-nav-item.active');
+                if(activeService) {
+                    renderServiceContent(activeService.dataset.service);
+                }
+                document.getElementById('currentYear').textContent = new Date().getFullYear(); // Re-add year after copyright text is replaced
+            };
+
+            // --- LOADER ANIMATION ---
+            const loader = document.getElementById('loader');
+            const timeline = gsap.timeline();
+            timeline
+                .to(".loader-char", { opacity: 1, stagger: 0.1, duration: 0.8, ease: "power2.inOut" })
+                .to(loader, { opacity: 0, duration: 0.8, ease: "power1.inOut", delay: 0.5 })
+                .call(() => {
+                    if(loader) loader.style.display = 'none';
+                    document.body.classList.remove('is-loading');
+                    ScrollTrigger.refresh();
+                });
+
+            // --- DEBOUNCE & RESIZE REFRESH ---
+            const debounce = (func, delay = 250) => {
+                let timeout;
+                return function(...args) { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); };
+            };
+            window.addEventListener("resize", debounce(() => ScrollTrigger.refresh(), 200));
+
+            // --- MOBILE MENU ---
+            const mobileMenu = document.getElementById('mobileMenu'), openMenuBtn = document.getElementById('mobileMenuOpen'),
+                  closeMenuBtn = document.getElementById('mobileMenuClose'), mobileLinks = document.querySelectorAll('.mobile-menu-link');
+            const toggleMenu = (open) => {
+                mobileMenu.classList.toggle('is-open', open); document.body.style.overflow = open ? 'hidden' : '';
+            };
+            if (openMenuBtn) openMenuBtn.addEventListener('click', () => toggleMenu(true));
+            if (closeMenuBtn) closeMenuBtn.addEventListener('click', () => toggleMenu(false));
+            mobileLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // --- CUSTOM CURSOR ---
+            if (window.matchMedia("(pointer: fine)").matches) {
+                const cursorDot = document.querySelector('.cursor-dot'), cursorCircle = document.querySelector('.cursor-circle');
+                let dotX = 0, dotY = 0;
+                window.addEventListener('mousemove', (e) => { dotX = e.clientX; dotY = e.clientY; });
+                const followCursor = () => {
+                    gsap.to(cursorDot, { x: dotX, y: dotY, duration: 0.1, ease: "none" });
+                    gsap.to(cursorCircle, { x: dotX, y: dotY, duration: 0.3, ease: "power2.out" });
+                    requestAnimationFrame(followCursor);
+                };
+                followCursor();
+                document.querySelectorAll('a, button, .carousel-wrapper, .process-card, .action-btn, .budget-btn, .faq-question').forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('link-hover'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('link-hover'));
+                });
+            }
+            
+            // --- THEME TOGGLE ---
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            const setTheme = (isLight) => {
+                document.body.classList.toggle('light-theme', isLight);
+                if (sunIcon) sunIcon.style.display = isLight ? 'none' : 'block';
+                if (moonIcon) moonIcon.style.display = isLight ? 'block' : 'none';
+                localStorage.setItem('lightTheme', isLight);
+                ScrollTrigger.refresh(true);
+            };
+            if (themeToggleBtn) themeToggleBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light-theme')));
+            const savedTheme = localStorage.getItem('lightTheme');
+            setTheme(savedTheme === 'true');
+
+            // --- SECTION OBSERVER FOR SIDENAV & THEME ---
+            const sections = document.querySelectorAll('main section'), navLinks = document.querySelectorAll('.side-nav-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('data-section') === sectionId) link.classList.add('active'); });
+                        document.body.classList.toggle('on-light-section', entry.target.classList.contains('section-light'));
+                    }
+                });
+            }, { root: null, rootMargin: '0px', threshold: 0.4 });
+            sections.forEach(section => observer.observe(section));
+
+            // --- GSAP SCROLL ANIMATIONS ---
+            if (document.querySelector('#hero')) {
+                ScrollTrigger.create({ trigger: "#hero", start: "top top", end: "bottom top", pin: true, pinSpacing: false });
+                gsap.to("#hero .hero-content", { opacity: 0, ease: "power1.in", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom center", scrub: true } });
+            }
+            gsap.utils.toArray('#about .line').forEach(line => { gsap.to(line.querySelector('.revealed-text'), { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", ease: "power1.inOut", scrollTrigger: { trigger: line, start: "top 85%", end: "bottom 70%", scrub: 0.8 } }); });
+            if (document.querySelector('#services')) ScrollTrigger.create({ trigger: "#services", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });
+            if (document.querySelector('#stats')) ScrollTrigger.create({ trigger: "#stats", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });
+            gsap.set("#portfolio", { borderTopLeftRadius: '40px', borderTopRightRadius: '40px' });
+
+            // --- DYNAMIC SERVICES SECTION ---
+            const serviceNavItems = document.querySelectorAll('.service-nav-item');
+            let currentActiveService = document.querySelector('.service-nav-item.active');
+            serviceNavItems.forEach(button => { button.addEventListener('click', () => { if (button === currentActiveService) return; if(currentActiveService) currentActiveService.classList.remove('active'); button.classList.add('active'); currentActiveService = button; renderServiceContent(button.dataset.service); }); });
+            
+            // --- STATS & PROCESS ANIMATIONS ---
+            gsap.utils.toArray('.stat-number').forEach(stat => { const endValue = parseFloat(stat.textContent); gsap.from(stat, { textContent: 0, duration: 2, ease: "power2.out", snap: { textContent: endValue % 1 !== 0 ? 0.1 : 1 }, scrollTrigger: { trigger: stat, start: "top 90%", toggleActions: 'play none none none' } }); });
+            gsap.utils.toArray('.process-step-new').forEach(step => { const number = step.querySelector('.process-number-new'); const content = step.querySelector('.process-content-new'); gsap.from(number, { scrollTrigger: { trigger: step, start: 'top 80%', toggleActions: 'play none none none' }, x: (step.matches(':nth-child(even)')) ? 50 : -50, opacity: 0, duration: 1, ease: 'power3.out' }); gsap.from(content.children, { scrollTrigger: { trigger: step, start: 'top 80%', toggleActions: 'play none none none' }, x: (step.matches(':nth-child(even)')) ? -50 : 50, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.2 }); if (number) { number.addEventListener('mousemove', e => { const rect = number.getBoundingClientRect(); const x = ((e.clientX - rect.left) / rect.width) * 100; const y = ((e.clientY - rect.top) / rect.height) * 100; number.style.setProperty('--x', `${x}%`); number.style.setProperty('--y', `${y}%`); }); } });
+
+            // --- FAQ ACCORDION ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => { const question = item.querySelector('.faq-question'); const answer = item.querySelector('.faq-answer'); if(question && answer){ question.addEventListener('click', () => { const isOpen = item.classList.contains('active'); faqItems.forEach(otherItem => { if (otherItem !== item) { otherItem.classList.remove('active'); otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false'); gsap.to(otherItem.querySelector('.faq-answer'), { maxHeight: 0, duration: 0.5, ease: 'power3.inOut'}); } }); if (isOpen) { item.classList.remove('active'); question.setAttribute('aria-expanded', 'false'); gsap.to(answer, { maxHeight: 0, duration: 0.5, ease: 'power3.inOut'}); } else { item.classList.add('active'); question.setAttribute('aria-expanded', 'true'); gsap.to(answer, { maxHeight: answer.scrollHeight, duration: 0.5, ease: 'power3.inOut'}); } }); }});
+            
+            // --- PORTFOLIO CAROUSEL ---
+            const portfolioItems = [ { title: 'E-shop pro prémiovou kosmetiku', services: 'Design, Vývoj, E-commerce', img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1200&auto=format&fit=crop' }, { title: 'Dashboard pro analytickou SaaS platformu', services: 'UI/UX Design, Webová Aplikace', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop' }, { title: 'Redesign brandingu pro Fintech aplikaci', services: 'Branding, UI/UX Design', img: 'https://images.unsplash.com/photo-1639322537504-6428a16b0a28?q=80&w=1200&auto=format&fit=crop' }, { title: 'Webové portfolio pro architektonické studio', services: 'Web Design, Vývoj', img: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1200&auto=format&fit=crop' }, { title: 'Marketingová kampaň pro butikovou CK', services: 'Marketing, Content, Design', img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop' } ];
+            const carouselWrapper = document.getElementById('carouselWrapper');
+            if(carouselWrapper) {
+                portfolioItems.forEach(item => { carouselWrapper.innerHTML += `<div class="carousel-item"><div class="item-image-wrapper"><img src="${item.img}" alt="${item.title}" class="item-image" loading="lazy"></div><div class="item-content"><h3 class="font-semibold">${item.title}</h3><p>${item.services}</p></div></div>`; });
+            }
+
+            // --- CAROUSEL LOGIC ---
+            class InfiniteCarousel {
+                constructor(wrapperId) { this.wrapper = document.getElementById(wrapperId); if (!this.wrapper) return; this.items = Array.from(this.wrapper.children); if (this.items.length < 2) return; this.realItemsCount = this.items.length; this.currentIndex = 1; this.isPointerDown = false; this.startX = 0; this.currentTranslate = 0; this.startTranslate = 0; this.isTransitioning = false; this.init(); }
+                init() { this.cloneItems(); this.setupEventListeners(); this.updatePosition(false); this.setActiveState(); }
+                cloneItems() { this.wrapper.appendChild(this.items[0].cloneNode(true)); this.wrapper.insertBefore(this.items[this.realItemsCount - 1].cloneNode(true), this.items[0]); this.items = Array.from(this.wrapper.children); }
+                setupEventListeners() { this.wrapper.addEventListener('mousedown', this.handleStart.bind(this)); this.wrapper.addEventListener('touchstart', this.handleStart.bind(this), { passive: true }); document.addEventListener('mousemove', this.handleMove.bind(this)); document.addEventListener('touchmove', this.handleMove.bind(this), { passive: true }); document.addEventListener('mouseup', this.handleEnd.bind(this)); document.addEventListener('touchend', this.handleEnd.bind(this)); document.addEventListener('mouseleave', this.handleEnd.bind(this)); this.wrapper.addEventListener('transitionend', this.handleTransitionEnd.bind(this)); 
+                    // FIX: The resize listener now also resets the active state to prevent desync issues.
+                    window.addEventListener('resize', debounce(() => {
+                        this.updatePosition(false);
+                        this.setActiveState(); 
+                    }, 200)); 
+                }
+                getItemWidth() { const item = this.items[1], style = window.getComputedStyle(item); return item.offsetWidth + parseFloat(style.marginLeft) + parseFloat(style.marginRight); }
+                getWrapperOffset() { return (this.wrapper.parentElement.offsetWidth - this.items[1].offsetWidth) / 2; }
+                updatePosition(withTransition = true) { if (withTransition) { this.isTransitioning = true; this.wrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; } else { this.wrapper.style.transition = 'none'; } this.currentTranslate = -this.currentIndex * this.getItemWidth() + this.getWrapperOffset(); this.setTransform(); }
+                setTransform() { this.wrapper.style.transform = `translateX(${this.currentTranslate}px)`; }
+                handleStart(e) { if (this.isTransitioning) return; document.body.classList.add('is-dragging'); this.isPointerDown = true; this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX; this.startTranslate = this.currentTranslate; this.wrapper.style.transition = 'none'; }
+                handleMove(e) { if (!this.isPointerDown) return; this.currentTranslate = this.startTranslate + ((e.type.includes('mouse') ? e.pageX : e.touches[0].clientX) - this.startX); this.setTransform(); }
+                handleEnd() { if (!this.isPointerDown) return; document.body.classList.remove('is-dragging'); this.isPointerDown = false; const movedBy = this.currentTranslate - this.startTranslate; if (movedBy < -this.getItemWidth() / 4) { this.currentIndex++; } else if (movedBy > this.getItemWidth() / 4) { this.currentIndex--; } this.updatePosition(); this.setActiveState(); }
+                handleTransitionEnd() { this.isTransitioning = false; let needsReset = false; if (this.currentIndex === 0) { this.currentIndex = this.realItemsCount; needsReset = true; } else if (this.currentIndex === this.realItemsCount + 1) { this.currentIndex = 1; needsReset = true; } if (needsReset) { this.updatePosition(false); this.setActiveState(); } }
+                setActiveState() { this.items.forEach(item => item.classList.remove('active')); const activeItem = this.items[this.currentIndex]; if(activeItem) activeItem.classList.add('active'); }
+            }
+            if (carouselWrapper && carouselWrapper.children.length > 0) new InfiniteCarousel('carouselWrapper');
+            
+            // --- MAIN CONTENT Z-INDEX SHIFT ---
+            ScrollTrigger.create({ trigger: 'body', start: 'top top-1', onEnter: () => gsap.set('.main-content-wrapper', { zIndex: 20 }), onLeaveBack: () => gsap.set('.main-content-wrapper', { zIndex: 5 }) });
+
+            // --- UTILITIES ---
+            if (document.getElementById('currentYear')) document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // --- FORM HANDLING ---
+            const contactForm = document.getElementById('contactForm');
+            const newsletterForm = document.getElementById('newsletterForm');
+
+            if (contactForm) {
+                const budgetOptions = contactForm.querySelector('.budget-options');
+                const budgetInput = contactForm.querySelector('#budget');
+                
+                if (budgetOptions) {
+                    budgetOptions.addEventListener('click', (e) => {
+                        if(e.target.classList.contains('budget-btn')) {
+                            const selectedValue = e.target.dataset.value;
+                            budgetInput.value = selectedValue;
+
+                            budgetOptions.querySelectorAll('.budget-btn').forEach(btn => btn.classList.remove('active'));
+                            e.target.classList.add('active');
+                        }
+                    });
+                }
+                
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const form = e.target;
+                    const data = new FormData(form);
+                    const action = form.action;
+                    const messageEl = document.getElementById('form-message');
+                    const currentLang = localStorage.getItem('language') || 'cz';
+
+                    fetch(action, {
+                        method: 'POST',
+                        body: data,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            messageEl.textContent = translations[currentLang]['form_success_message'];
+                            messageEl.style.color = 'lightgreen';
+                            form.reset();
+                            if(budgetOptions) budgetOptions.querySelectorAll('.budget-btn').forEach(btn => btn.classList.remove('active'));
+                        } else {
+                             messageEl.textContent = translations[currentLang]['form_error_message'];
+                             messageEl.style.color = 'lightcoral';
+                        }
+                    }).catch(error => {
+                        messageEl.textContent = translations[currentLang]['form_error_message'];
+                        messageEl.style.color = 'lightcoral';
+                    }).finally(() => {
+                        messageEl.style.display = 'block';
+                        setTimeout(() => { messageEl.style.display = 'none'; }, 5000);
+                    });
+                });
+            }
+
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const form = e.target;
+                    const data = new FormData(form);
+                    const action = form.action;
+                    const messageEl = document.getElementById('newsletter-message');
+                    const currentLang = localStorage.getItem('language') || 'cz';
+
+                     fetch(action, {
+                        method: 'POST',
+                        body: data,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            messageEl.textContent = translations[currentLang]['newsletter_success_message'];
+                            messageEl.style.color = 'lightgreen';
+                            form.reset();
+                        } else {
+                             messageEl.textContent = translations[currentLang]['newsletter_error_message'];
+                             messageEl.style.color = 'lightcoral';
+                        }
+                    }).catch(error => {
+                        messageEl.textContent = translations[currentLang]['newsletter_error_message'];
+                        messageEl.style.color = 'lightcoral';
+                    }).finally(() => {
+                        messageEl.style.display = 'block';
+                        setTimeout(() => { messageEl.style.display = 'none'; }, 5000);
+                    });
+                });
+            }
+
+            // --- COOKIE BANNER ---
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const declineBtn = document.getElementById('decline-cookies');
+            const cookieConsent = localStorage.getItem('cookie_consent');
+
+            if (!cookieConsent && cookieBanner) {
+                setTimeout(() => { cookieBanner.classList.add('show'); }, 2000);
+            }
+
+            const handleConsent = (consent) => {
+                localStorage.setItem('cookie_consent', consent);
+                if (cookieBanner) cookieBanner.classList.remove('show');
+                if (consent === 'accepted') {
+                    console.log('Cookies accepted. Analytics can be initialized.');
+                } else {
+                    console.log('Cookies declined.');
+                }
+            };
+            if (acceptBtn) acceptBtn.addEventListener('click', () => handleConsent('accepted'));
+            if (declineBtn) declineBtn.addEventListener('click', () => handleConsent('declined'));
+
+            // --- INITIALIZE LANGUAGE ---
+            const langSwitcherContainer = document.getElementById('lang-switcher-container');
+            if (langSwitcherContainer) {
+                langSwitcherContainer.addEventListener('click', (e) => {
+                     if (e.target.classList.contains('lang-btn')) {
+                        const newLang = e.target.dataset.lang;
+                        setLanguage(newLang);
+                    }
+                });
+            }
+            const savedLang = localStorage.getItem('language') || 'cz';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

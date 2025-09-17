@@ -375,6 +375,7 @@
         .carousel-item { width: 45%; max-width: none; margin: 1%; opacity: 1; transform: none; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
         .carousel-item.active, .carousel-item.active:hover, .carousel-item.active~.carousel-item { transform: none; }
         .portfolio-content-wrapper { padding-bottom: 4rem; }
+        .carousel-nav { display: none; } /* Hide arrows on mobile */
         
         .form-row { flex-direction: column; gap: 0; } 
         .input-group-revamped { margin-bottom: 2.5rem; } 
@@ -1455,6 +1456,7 @@
         
         ScrollTrigger.matchMedia({
             "(min-width: 769px)": function() {
+                // Desktop-only pinning animations for smooth scrolling
                 if (document.querySelector('#hero')) {
                     ScrollTrigger.create({ trigger: "#hero", start: "top top", end: "bottom top", pin: true, pinSpacing: false });
                 }
@@ -1485,18 +1487,23 @@
 
         // --- CAROUSEL LOGIC ---
         function setupCarousel() {
+            // Only initialize the complex JS carousel on desktop
             if (window.innerWidth > 768) {
                  if (carouselWrapper && carouselWrapper.children.length > 0 && !carouselWrapper.classList.contains('desktop-carousel-initialized')) {
                     new InfiniteCarousel('carouselWrapper', 'carouselPrev', 'carouselNext');
                     carouselWrapper.classList.add('desktop-carousel-initialized');
+                    const nav = document.querySelector('.carousel-nav');
+                    if (nav) nav.style.display = 'flex'; 
                 }
             } else {
+                // On mobile, hide the arrows and let CSS handle the grid layout
                 const nav = document.querySelector('.carousel-nav');
                 if (nav) nav.style.display = 'none';
                  if (carouselWrapper && carouselWrapper.classList.contains('desktop-carousel-initialized')) {
+                    // Cleanup if resizing from desktop to mobile
                     carouselWrapper.classList.remove('desktop-carousel-initialized');
-                    // Potentially reset styles here if the class adds them
-                }
+                    // This is a simple cleanup; a real-world scenario might need to kill the ScrollTrigger instance.
+                 }
             }
         }
         
@@ -1686,4 +1693,5 @@
 </body>
 
 </html>
+
 

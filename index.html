@@ -351,7 +351,7 @@
         #hero { min-height: 100vh; }
         .background-image-container {
             background-size: auto 70vh;
-            background-position: center bottom;
+            background-position: center 15vh;
         }
         #hero h1 { font-size: clamp(2.8rem, 12vw, 4rem); }
         #hero p { font-size: clamp(1.2rem, 5vw, 1.5rem); }
@@ -371,10 +371,27 @@
             transform: translateX(0);
         }
 
-        /* Carousel & Contact Fixes */
-        .carousel-item { width: 80vw; margin: 0 2vw; }
+        /* Carousel Fixes */
+        .carousel-container { perspective: none; }
+        .carousel-wrapper {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+            transform-style: flat;
+            transform: none !important;
+        }
+        .carousel-wrapper::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+        .carousel-item {
+            scroll-snap-align: center;
+            transform: scale(1) !important;
+            opacity: 1 !important;
+            margin: 0 10px;
+        }
         .portfolio-content-wrapper { padding-bottom: 4rem; }
         
+        /* Contact Fixes */
         .form-row { flex-direction: column; gap: 0; } 
         .input-group-revamped { margin-bottom: 2.5rem; } 
         .giant-footer-text { font-size: clamp(2.5rem, 18vw, 11rem); white-space: normal; word-break: break-all; } 
@@ -1484,46 +1501,89 @@
         }
 
         // --- CAROUSEL LOGIC ---
-        class InfiniteCarousel {
-            constructor(wrapperId, prevBtnId, nextBtnId) { 
-                this.wrapper = document.getElementById(wrapperId); 
-                if (!this.wrapper) return; 
-                this.items = Array.from(this.wrapper.children); 
-                if (this.items.length < 2) return; 
-                this.realItemsCount = this.items.length; 
-                this.currentIndex = 1; 
-                this.isPointerDown = false; 
-                this.startX = 0; 
-                this.currentTranslate = 0; 
-                this.startTranslate = 0; 
-                this.isTransitioning = false; 
+        class Carousel {
+            constructor(wrapperId, prevBtnId, nextBtnId) {
+                this.wrapper = document.getElementById(wrapperId);
+                if (!this.wrapper) return;
+                this.items = Array.from(this.wrapper.children);
+                if (this.items.length === 0) return;
                 this.prevBtn = document.getElementById(prevBtnId);
                 this.nextBtn = document.getElementById(nextBtnId);
-                this.init(); 
+
+                if (window.innerWidth <= 768) {
+                    this.initMobile();
+                } else {
+                    this.initDesktop();
+                }
             }
-            init() { this.cloneItems(); this.setupEventListeners(); this.updatePosition(false); this.setActiveState(); }
-            cloneItems() { this.wrapper.appendChild(this.items[0].cloneNode(true)); this.wrapper.insertBefore(this.items[this.realItemsCount - 1].cloneNode(true), this.items[0]); this.items = Array.from(this.wrapper.children); }
-            setupEventListeners() { 
-                this.wrapper.addEventListener('mousedown', this.handleStart.bind(this)); 
-                this.wrapper.addEventListener('touchstart', this.handleStart.bind(this), { passive: true }); 
-                document.addEventListener('mousemove', this.handleMove.bind(this)); 
-                document.addEventListener('touchmove', this.handleMove.bind(this), { passive: true }); 
-                document.addEventListener('mouseup', this.handleEnd.bind(this)); 
-                document.addEventListener('touchend', this.handleEnd.bind(this)); 
-                document.addEventListener('mouseleave', this.handleEnd.bind(this)); 
-                this.wrapper.addEventListener('transitionend', this.handleTransitionEnd.bind(this)); 
-                window.addEventListener('resize', debounce(() => this.updatePosition(false), 200)); 
+
+            initMobile() {
+                this.wrapper.style.transform = 'none'; // Ensure no JS transform is applied
+                this.items.forEach(item => {
+                    item.style.transform = 'none';
+                    item.style.opacity = '1';
+                });
+
+                const scrollAmount = () => {
+                    if (this.items.length === 0) return 0;
+                    const itemStyle = window.getComputedStyle(this.items[0]);
+                    return this.items[0].offsetWidth + parseInt(itemStyle.marginLeft) + parseInt(itemStyle.marginRight);
+                };
+
+                if (this.prevBtn) this.prevBtn.addEventListener('click', () => {
+                    this.wrapper.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                });
+                if (this.nextBtn) this.nextBtn.addEventListener('click', () => {
+                    this.wrapper.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                });
+            }
+
+            initDesktop() {
+                this.realItemsCount = this.items.length;
+                if (this.realItemsCount < 2) return;
+                this.currentIndex = 1;
+                this.isPointerDown = false;
+                this.startX = 0;
+                this.currentTranslate = 0;
+                this.startTranslate = 0;
+                this.isTransitioning = false;
+                
+                this.cloneItems();
+                this.setupDesktopEventListeners();
+                this.updatePosition(false);
+                this.setActiveState();
+            }
+
+            cloneItems() {
+                this.wrapper.appendChild(this.items[0].cloneNode(true));
+                this.wrapper.insertBefore(this.items[this.realItemsCount - 1].cloneNode(true), this.items[0]);
+                this.items = Array.from(this.wrapper.children);
+            }
+
+            setupDesktopEventListeners() {
+                this.wrapper.addEventListener('mousedown', this.handleStart.bind(this));
+                this.wrapper.addEventListener('touchstart', this.handleStart.bind(this), { passive: true });
+                document.addEventListener('mousemove', this.handleMove.bind(this));
+                document.addEventListener('touchmove', this.handleMove.bind(this), { passive: true });
+                document.addEventListener('mouseup', this.handleEnd.bind(this));
+                document.addEventListener('touchend', this.handleEnd.bind(this));
+                document.addEventListener('mouseleave', this.handleEnd.bind(this));
+                this.wrapper.addEventListener('transitionend', this.handleTransitionEnd.bind(this));
+                window.addEventListener('resize', debounce(() => this.updatePosition(false), 200));
                 if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.moveSlide(-1));
                 if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.moveSlide(1));
             }
+
             moveSlide(direction) {
                 if (this.isTransitioning) return;
                 this.currentIndex += direction;
                 this.updatePosition();
                 this.setActiveState();
             }
+
             getItemWidth() { const item = this.items[1], style = window.getComputedStyle(item); return item.offsetWidth + parseFloat(style.marginLeft) + parseFloat(style.marginRight); }
             getWrapperOffset() { return (this.wrapper.parentElement.offsetWidth - this.items[1].offsetWidth) / 2; }
+            
             updatePosition(withTransition = true) {
                 if (withTransition) {
                     this.isTransitioning = true;
@@ -1531,22 +1591,10 @@
                 } else {
                     this.wrapper.style.transition = 'none';
                 }
-
-                if (window.innerWidth <= 768) {
-                    // Mobile centering logic: center of container - center of current item
-                    const containerCenter = this.wrapper.parentElement.offsetWidth / 2;
-                    const currentItem = this.items[this.currentIndex];
-                    if (currentItem) {
-                        const itemCenter = currentItem.offsetLeft + (currentItem.offsetWidth / 2);
-                        this.currentTranslate = containerCenter - itemCenter;
-                    }
-                } else {
-                    // Original logic for desktop 3D effect
-                    this.currentTranslate = -this.currentIndex * this.getItemWidth() + this.getWrapperOffset();
-                }
-
+                this.currentTranslate = -this.currentIndex * this.getItemWidth() + this.getWrapperOffset();
                 this.setTransform();
             }
+
             setTransform() { this.wrapper.style.transform = `translateX(${this.currentTranslate}px)`; }
             handleStart(e) { if (this.isTransitioning) return; document.body.classList.add('is-dragging'); this.isPointerDown = true; this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX; this.startTranslate = this.currentTranslate; this.wrapper.style.transition = 'none'; }
             handleMove(e) { if (!this.isPointerDown) return; this.currentTranslate = this.startTranslate + ((e.type.includes('mouse') ? e.pageX : e.touches[0].clientX) - this.startX); this.setTransform(); }
@@ -1554,9 +1602,9 @@
             handleTransitionEnd() { this.isTransitioning = false; let needsReset = false; if (this.currentIndex === 0) { this.currentIndex = this.realItemsCount; needsReset = true; } else if (this.currentIndex === this.realItemsCount + 1) { this.currentIndex = 1; needsReset = true; } if (needsReset) { this.updatePosition(false); this.setActiveState(); } }
             setActiveState() { this.items.forEach(item => item.classList.remove('active')); const activeItem = this.items[this.currentIndex]; if(activeItem) activeItem.classList.add('active'); }
         }
-        
+
         if (carouselWrapper && carouselWrapper.children.length > 0) {
-            new InfiniteCarousel('carouselWrapper', 'carouselPrev', 'carouselNext');
+            new Carousel('carouselWrapper', 'carouselPrev', 'carouselNext');
         }
         
         // --- MAIN CONTENT Z-INDEX SHIFT ---

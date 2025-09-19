@@ -1216,26 +1216,31 @@
             gsap.set('.main-content-wrapper', { zIndex: 20 });
 
             // 1. Hero Section Pinning
-            // The hero section is pinned to the top, allowing the main content wrapper to scroll over it, creating an overlay effect.
+            // The hero section is pinned to the top, allowing the main content wrapper to scroll over it. This works on all screen sizes.
             ScrollTrigger.create({
                 trigger: "#hero",
                 start: "top top",
-                end: "bottom top", // Pin until the bottom of the hero section reaches the top of the viewport
+                end: "bottom top",
                 pin: true,
-                pinSpacing: false, // Prevents a gap from appearing after the pin.
-                anticipatePin: 1 // Helps prevent the element from "snapping" into place when it is pinned.
+                pinSpacing: false,
+                anticipatePin: 1
             });
             
-            // 2. Services Section Pinning
-            // The services section is pinned while the following section (#stats) scrolls over it, creating a similar overlay effect.
-            ScrollTrigger.create({
-                trigger: "#services",
-                start: "top top",
-                // Pin for a scroll distance equal to 150% of the section's height to allow more time to view content.
-                end: () => `+=${document.querySelector('#services').offsetHeight * 1.5}`,
-                pin: true,
-                pinSpacing: false, // Prevents a gap from appearing after the pin.
-                anticipatePin: 1 // Helps prevent the element from "snapping" into place.
+            // 2. Services Section Pinning - Desktop Only
+            // This pinning effect is disabled on mobile (<= 768px). On smaller screens, the services section content becomes
+            // taller than the viewport. Pinning it would make the bottom content inaccessible. Disabling the pin on mobile
+            // ensures a standard scroll, making all content viewable.
+            ScrollTrigger.matchMedia({
+                "(min-width: 769px)": function() {
+                    ScrollTrigger.create({
+                        trigger: "#services",
+                        start: "top top",
+                        end: () => `+=${document.querySelector('#services').offsetHeight * 1.5}`,
+                        pin: true,
+                        pinSpacing: false,
+                        anticipatePin: 1
+                    });
+                }
             });
 
             // --- DYNAMIC SERVICES SECTION ---

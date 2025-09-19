@@ -47,7 +47,7 @@
             --glass-bg: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.1); --glass-blur: 20px;
             --bg-color-light: #F5F5F7; --color-foreground-light: #1a1a1a; --color-muted-light: #555555; --border-color-light: #DDDDDD;
         }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overscroll-behavior-y: contain; }
         body { font-family: 'Manrope', sans-serif; background-color: var(--bg-color); background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(to right, var(--grid-color) 1px, transparent 1px); background-size: 30px 30px; color: var(--color-foreground); overflow-x: hidden; cursor: none; transition: background-color 0.5s ease, color 0.5s ease; }
         .glass-effect { background: var(--glass-bg); -webkit-backdrop-filter: blur(var(--glass-blur)); backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); transition: background 0.5s ease, border-color 0.5s ease; }
         .loader { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0A0A0A; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out; }
@@ -407,8 +407,8 @@
           "name": "Tomáš Zítko - Freelance Web Design & Vývoj",
           "image": "https://www.tomaszitko.cz/assets/images/og-image.jpg",
           "@id": "https://www.tomaszitko.cz/#service",
-          "telephone": "+420-123-456-789",
-          "email": "kontakt@tomaszitko.cz",
+          "telephone": "+420735128331",
+          "email": "tomas.zitko@icloud.com",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Praha",
@@ -792,7 +792,7 @@
             <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
         <div class="fixed-actions-divider"></div>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="action-btn" aria-label="Instagram">
+        <a href="https://instagram.com/zitko.tom" target="_blank" rel="noopener noreferrer" class="action-btn" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         </a>
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="action-btn" aria-label="Facebook">
@@ -820,7 +820,7 @@
                         <li><a href="#about" class="footer-link-color transition-colors" data-lang-key="footer_nav_about">O mně</a></li>
                     </ul>
                     <ul class="space-y-4">
-                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="footer-link-color transition-colors" data-lang-key="footer_social_insta">Instagram</a></li>
+                        <li><a href="https://instagram.com/zitko.tom" target="_blank" rel="noopener noreferrer" class="footer-link-color transition-colors" data-lang-key="footer_social_insta">Instagram</a></li>
                         <li><a href="#" target="_blank" rel="noopener noreferrer" class="footer-link-color transition-colors" data-lang-key="footer_social_fb">Facebook</a></li>
                         <li><a href="#" target="_blank" rel="noopener noreferrer" class="footer-link-color transition-colors" data-lang-key="footer_social_linkedin">LinkedIn</a></li>
                     </ul>
@@ -1209,19 +1209,6 @@
             sections.forEach(section => observer.observe(section));
 
             // --- GSAP SCROLL ANIMATIONS ---
-            if (document.querySelector('#hero')) {
-                ScrollTrigger.create({ trigger: "#hero", start: "top top", end: "bottom top", pin: true, pinSpacing: false });
-                gsap.to("#hero .hero-content, #hero .scroll-indicator", { 
-                    opacity: 0, 
-                    ease: "power1.in", 
-                    scrollTrigger: { 
-                        trigger: "#hero", 
-                        start: "top top", 
-                        end: "bottom center", 
-                        scrub: true 
-                    } 
-                });
-            }
             gsap.utils.toArray('#about .line').forEach(line => { gsap.to(line.querySelector('.revealed-text'), { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", ease: "power1.inOut", scrollTrigger: { trigger: line, start: "top 85%", end: "bottom 70%", scrub: 0.8 } }); });
             if(window.innerWidth > 768){
                 if (document.querySelector('#services')) ScrollTrigger.create({ trigger: "#services", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });

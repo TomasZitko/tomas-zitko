@@ -1210,11 +1210,33 @@
 
             // --- GSAP SCROLL ANIMATIONS ---
             gsap.utils.toArray('#about .line').forEach(line => { gsap.to(line.querySelector('.revealed-text'), { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", ease: "power1.inOut", scrollTrigger: { trigger: line, start: "top 85%", end: "bottom 70%", scrub: 0.8 } }); });
-            if(window.innerWidth > 768){
-                if (document.querySelector('#services')) ScrollTrigger.create({ trigger: "#services", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });
-                if (document.querySelector('#stats')) ScrollTrigger.create({ trigger: "#stats", start: "top top", end: "+=100%", pin: true, pinSpacing: false, anticipatePin: 1 });
-            }
-            gsap.set("#portfolio", { borderTopLeftRadius: '40px', borderTopRightRadius: '40px' });
+            
+            // --- NEW: CUSTOM SCROLLING OVERLAY EFFECTS ---
+            // Set z-index so the main content correctly overlays the pinned hero section.
+            gsap.set('.main-content-wrapper', { zIndex: 20 });
+
+            // 1. Hero Section Pinning
+            // The hero section is pinned to the top, allowing the main content wrapper to scroll over it, creating an overlay effect.
+            ScrollTrigger.create({
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top", // Pin until the bottom of the hero section reaches the top of the viewport
+                pin: true,
+                pinSpacing: false, // Prevents a gap from appearing after the pin.
+                anticipatePin: 1 // Helps prevent the element from "snapping" into place when it is pinned.
+            });
+            
+            // 2. Services Section Pinning
+            // The services section is pinned while the following section (#stats) scrolls over it, creating a similar overlay effect.
+            ScrollTrigger.create({
+                trigger: "#services",
+                start: "top top",
+                // Pin for a scroll distance equal to 150% of the section's height to allow more time to view content.
+                end: () => `+=${document.querySelector('#services').offsetHeight * 1.5}`,
+                pin: true,
+                pinSpacing: false, // Prevents a gap from appearing after the pin.
+                anticipatePin: 1 // Helps prevent the element from "snapping" into place.
+            });
 
             // --- DYNAMIC SERVICES SECTION ---
             const serviceNavItems = document.querySelectorAll('.service-nav-item');
@@ -1271,9 +1293,6 @@
             }
             if (carouselWrapper && carouselWrapper.children.length > 0) new InfiniteCarousel('carouselWrapper');
             
-            // --- MAIN CONTENT Z-INDEX SHIFT ---
-            ScrollTrigger.create({ trigger: 'body', start: 'top top-1', onEnter: () => gsap.set('.main-content-wrapper', { zIndex: 20 }), onLeaveBack: () => gsap.set('.main-content-wrapper', { zIndex: 5 }) });
-
             // --- UTILITIES ---
             if (document.getElementById('currentYear')) document.getElementById('currentYear').textContent = new Date().getFullYear();
 
